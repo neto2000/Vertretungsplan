@@ -9,6 +9,7 @@
    - [ ] design Header
    - [ ] design Background
    - [ ] colorsheme with [https://www.realtimecolors.com/](https://www.realtimecolors.com/)
+   - [ ] choose fonts
 
    #### Personal
 
