@@ -11,9 +11,9 @@
 
    #### Personal
 
-    - [ ] Heute/Morgen vllt. neben Content statt drüber
-    - [ ] Choose Icons for EVA, Raumänderung, Vertretung, etc.
-    - [ ] Icons on the left side of the content line
+   - [ ] Heute/Morgen vllt. neben Content statt drüber
+   - [ ] Choose Icons for EVA, Raumänderung, Vertretung, etc.
+   - [ ] Icons on the left side of the content line
 
   ### Frontend (svelte)
 
