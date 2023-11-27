@@ -5,6 +5,14 @@
   ### Fonts
    - Heading:   Poppins     SemiBold    40px
    - Body:      Rubik       Regular     16px
+  ### Colors (not final)
+   ```
+   --text: #000019;
+   --background: #ffffff;
+   --primary: #003a6c;
+   --secondary: #e2edf6;
+   --accent: #1c254a;
+   ```
 
  ## ToDo's
 
@@ -14,7 +22,7 @@
    - [ ] simple design for main page
    - [ ] design Header
    - [ ] design Background
-   - [ ] colorsheme with [https://www.realtimecolors.com/](https://www.realtimecolors.com/)
+   - [x] colorsheme with [https://www.realtimecolors.com/](https://www.realtimecolors.com/)
    - [x] choose fonts
 
    #### Personal
