@@ -18,18 +18,20 @@
 
   ### UI Design
 
-   - [ ] create wireframes
-   - [ ] simple design for main page
-   - [ ] design Header
-   - [ ] design Background
+   - [x] simple design for main page
+   - [x] design Header
    - [x] colorsheme with [https://www.realtimecolors.com/](https://www.realtimecolors.com/)
    - [x] choose fonts
+   - [ ] design Background
+   - [ ] design Personal with no Login
+   - [ ] Header with Login Profile and Settings
+   - [ ] create wireframes
 
    #### Personal
 
-   - [ ] Heute/Morgen vllt. neben Content statt drüber
+   - [x] Heute/Morgen vllt. neben Content statt drüber
+   - [x] Icons on the left side of the content line
    - [ ] Choose Icons for EVA, Raumänderung, Vertretung, etc.
-   - [ ] Icons on the left side of the content line
 
   ### Frontend (svelte)
 
