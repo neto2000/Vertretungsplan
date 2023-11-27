@@ -1,5 +1,11 @@
 # Vertretungsplan
 
+ ## Design
+
+  ### Fonts
+   - Heading:   Poppins     SemiBold    40px
+   - Body:      Rubik       Regular     16px
+
  ## ToDo's
 
   ### UI Design
@@ -9,7 +15,7 @@
    - [ ] design Header
    - [ ] design Background
    - [ ] colorsheme with [https://www.realtimecolors.com/](https://www.realtimecolors.com/)
-   - [ ] choose fonts
+   - [x] choose fonts
 
    #### Personal
 
