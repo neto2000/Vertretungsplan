@@ -34,7 +34,5 @@
    - [ ] Choose Icons for EVA, Raumänderung, Vertretung, etc.
 
   ### Frontend (svelte)
-   - [ ] read about server-side rendering
-   - [ ] read about routing multiple svelte files
 
   ### Backend (rust)
