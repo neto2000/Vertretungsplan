@@ -23,6 +23,7 @@
    - [x] colorsheme with [https://www.realtimecolors.com/](https://www.realtimecolors.com/)
    - [x] choose fonts
    - [ ] design Background
+   - [ ] maybe Heute/Morgen button beneath heading
    - [ ] design Personal with no Login
    - [ ] Header with Login Profile and Settings
    - [ ] create wireframes
