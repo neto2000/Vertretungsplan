@@ -22,8 +22,8 @@
    - [x] design Header
    - [x] colorsheme with [https://www.realtimecolors.com/](https://www.realtimecolors.com/)
    - [x] choose fonts
+   - [x] maybe Heute/Morgen button beneath heading
    - [ ] design Background
-   - [ ] maybe Heute/Morgen button beneath heading
    - [ ] design Personal with no Login
    - [ ] Header with Login Profile and Settings
    - [ ] create wireframes
@@ -32,6 +32,7 @@
 
    - [x] Heute/Morgen vllt. neben Content statt drüber
    - [x] Icons on the left side of the content line
+   - [ ] Stift symbol unten rechts onclick: Text daneben mit "Studenplan bearbeiten"
    - [ ] Choose Icons for EVA, Raumänderung, Vertretung, etc.
 
   ### Frontend (svelte)
