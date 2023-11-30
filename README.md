@@ -23,23 +23,26 @@
    - [x] colorsheme with [https://www.realtimecolors.com/](https://www.realtimecolors.com/)
    - [x] choose fonts
    - [x] maybe Heute/Morgen button beneath heading
-   - [ ] design Background
-   - [ ] design Personal with no Login
    - [ ] Header with Login Profile and Settings
-   - [ ] create wireframes
+   - [ ] design Background
+   - [ ] Login page
+   - [ ] Admin Panel
+   - [ ] Aushänge
+ 
 
    #### Personal
 
    - [x] Heute/Morgen vllt. neben Content statt drüber
    - [x] Icons on the left side of the content line
-   - [ ] Stift symbol unten rechts onclick: Text daneben mit "Studenplan bearbeiten"
+   - [x] Stift symbol unten rechts onclick: Text daneben mit "Studenplan bearbeiten"
    - [ ] Choose Icons for EVA, Raumänderung, Vertretung, etc.
 
    #### Dein Stundenplan
-    - [ ] Stundenplan wird normal angezeigt
-    - [ ] unten rechts Stift um in Bearbeitungsmodus zu wechseln
-    - [ ] in Bearbeitungsmodus bei jedem Stundenslot ein Plus um Hinzufügen overlay zu öffnen
-    - [ ] Hinzufügen overlay (Fach, Lehrer, Kürzel, Raum)
+
+   - [ ] Stundenplan wird normal angezeigt
+   - [ ] unten rechts Stift um in Bearbeitungsmodus zu wechseln
+   - [ ] in Bearbeitungsmodus bei jedem Stundenslot ein Plus um Hinzufügen overlay zu öffnen
+   - [ ] Hinzufügen overlay (Fach, Lehrer, Kürzel, Raum)
 
   ### Frontend (svelte)
 
