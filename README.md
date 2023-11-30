@@ -35,6 +35,12 @@
    - [ ] Stift symbol unten rechts onclick: Text daneben mit "Studenplan bearbeiten"
    - [ ] Choose Icons for EVA, Raumänderung, Vertretung, etc.
 
+   #### Dein Stundenplan
+    - [ ] Stundenplan wird normal angezeigt
+    - [ ] unten rechts Stift um in Bearbeitungsmodus zu wechseln
+    - [ ] in Bearbeitungsmodus bei jedem Stundenslot ein Plus um Hinzufügen overlay zu öffnen
+    - [ ] Hinzufügen overlay (Fach, Lehrer, Kürzel, Raum)
+
   ### Frontend (svelte)
 
   ### Backend (rust)
