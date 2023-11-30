@@ -23,9 +23,10 @@
    - [x] colorsheme with [https://www.realtimecolors.com/](https://www.realtimecolors.com/)
    - [x] choose fonts
    - [x] maybe Heute/Morgen button beneath heading
-   - [ ] Header with Login Profile and Settings
+   - [x] Header with Login Profile and Settings
    - [ ] design Background
    - [ ] Login page
+   - [ ] Settings Page
    - [ ] Admin Panel
    - [ ] Aushänge
  
@@ -39,11 +40,15 @@
 
    #### Dein Stundenplan
 
-   - [ ] Stundenplan wird normal angezeigt
-   - [ ] unten rechts Stift um in Bearbeitungsmodus zu wechseln
+   - [x] Stundenplan wird normal angezeigt
+   - [x] unten rechts Stift um in Bearbeitungsmodus zu wechseln
    - [ ] in Bearbeitungsmodus bei jedem Stundenslot ein Plus um Hinzufügen overlay zu öffnen
    - [ ] Hinzufügen overlay (Fach, Lehrer, Kürzel, Raum)
 
   ### Frontend (svelte)
+
+   #### Dein Stundenplan
+   - [ ] normale Anzeige: wird nur so hoch, wie der längste Tag
+   - [ ] Bearbeitungsmodus: volle 10 Stunden
 
   ### Backend (rust)
