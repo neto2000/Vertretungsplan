@@ -24,6 +24,7 @@
    - [x] choose fonts
    - [x] maybe Heute/Morgen button beneath heading
    - [x] Header with Login Profile and Settings
+   - [ ] Impressum
    - [ ] design Background
    - [ ] Login page
    - [ ] Settings Page
@@ -42,8 +43,8 @@
 
    - [x] Stundenplan wird normal angezeigt
    - [x] unten rechts Stift um in Bearbeitungsmodus zu wechseln
-   - [ ] in Bearbeitungsmodus bei jedem Stundenslot ein Plus um Hinzufügen overlay zu öffnen
-   - [ ] Hinzufügen overlay (Fach, Lehrer, Kürzel, Raum)
+   - [x] in Bearbeitungsmodus bei jedem Stundenslot ein Plus um Hinzufügen overlay zu öffnen
+   - [x] Hinzufügen overlay (Fach, Lehrer, Kürzel, Raum)
 
   ### Frontend (svelte)
 
