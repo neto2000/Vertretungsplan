@@ -1,5 +1,7 @@
 <script>
+  import TableRow from "./TableRow.svelte";
 
+  let test_rows = 10
 </script>
 
 
@@ -16,6 +18,11 @@
       <th>Typ</th>
       <th>Info</th>
     </tr>
+
+    {#each Array(test_rows) as _, i}
+      <TableRow /> 
+    {/each}
+
   </table>
 </div>
 
