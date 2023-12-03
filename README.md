@@ -24,6 +24,7 @@
    - [x] choose fonts
    - [x] maybe Heute/Morgen button beneath heading
    - [x] Header with Login Profile and Settings
+   - [ ] new color palette
    - [ ] Impressum
    - [ ] design Background
    - [ ] Login page
