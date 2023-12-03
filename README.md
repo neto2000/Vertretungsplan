@@ -49,6 +49,11 @@
 
   ### Frontend (svelte)
 
+   - [ ] css: color variables
+   - [ ] implement VP design
+   - [ ] implement Personal design
+   - [ ] implement Stundenplan design
+
    #### Dein Stundenplan
    - [ ] normale Anzeige: wird nur so hoch, wie der längste Tag
    - [ ] Bearbeitungsmodus: volle 10 Stunden
