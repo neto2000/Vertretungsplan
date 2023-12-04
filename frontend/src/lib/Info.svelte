@@ -18,6 +18,8 @@
   
     display: flex;
 
+    margin-left: 11vh;
+
   }
 
   .dot {

@@ -36,7 +36,7 @@ import Table from "./Table.svelte";
 
 
     margin-top: 10vh;
-
+    margin-bottom: 20vh;
 
 
     background-color: #e2edf6;
@@ -71,6 +71,8 @@ import Table from "./Table.svelte";
 
     font-size: 40px;
 
+    margin: 6vh 0vh 5vh 0vh;
+
   }
 
 
@@ -78,6 +80,8 @@ import Table from "./Table.svelte";
 
     padding-top: 8px;
     padding-bottom: 8px;
+
+    margin-right: 5px;
 
     width: 110px;
 
@@ -99,6 +103,8 @@ import Table from "./Table.svelte";
 
     padding-top: 7px;
     padding-bottom: 7px;
+
+    margin-left: 5px;
 
     background-color: #e2edf6;
 
@@ -122,11 +128,18 @@ import Table from "./Table.svelte";
     background-color: white;
   
 
-    width: 80%;
+    width: 60%;
+
+
+    margin-top: 9vh;
+
+    padding: 4vh 0vh;
 
     
     border: none;
     border-radius: 10px;
+
+    box-shadow: 0px 6px 6px 4px rgba(0, 0, 0, 0.2);
 
   }
 
@@ -140,6 +153,14 @@ import Table from "./Table.svelte";
 
     font-size: 32px;
 
+    margin: 0vh 0vh 0vh 6vh;
+
+
+  }
+
+  .infos {
+    
+    margin-top: 2vh
 
   }
 </style>
