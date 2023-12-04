@@ -49,8 +49,9 @@
 
   ### Frontend (svelte)
 
-   - [ ] css: color variables
    - [x] implement VP design
+   - [ ] improve all gaps!
+   - [ ] css: color variables
    - [ ] implement Personal design
    - [ ] implement Stundenplan design
 
