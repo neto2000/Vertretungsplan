@@ -1,5 +1,5 @@
 <script>
-  export let logged_in = false;
+  export let logged_in = true;
 
   function test() {
 
@@ -24,7 +24,10 @@
 
     <div class="account">
       {#if logged_in}
-         <!-- account picture + account name -->
+        <p class="user-name">neto2000</p>
+        <button class="settings">
+          <img class="user-pic" src="./src/assets/account_circle.svg" alt="account" />
+        </button>
       {:else}
         <button class="login">Log In</button>
         <button class="signup">Sign Up</button>
@@ -66,6 +69,7 @@
     text-align: left;
   
     margin: auto 0;
+
   }
 
   .logo-container {
@@ -82,7 +86,9 @@
 
     text-align: right;
 
-    margin: auto 0;
+    height: 8.5vh;
+
+    line-height: 8.5vh;
   }
 
 
@@ -151,7 +157,52 @@
 
   }
 
+  .user-name {
+    
+    font-family: 'Rubik', sans-serif;
+    
+    font-size: 16px;
 
+    display: inline-block;
+
+    vertical-align: middle;
+
+    line-height: normal;
+
+    margin-right: 1.7%;
+
+  }
+
+  .user-pic {
+
+    display: inline-block;
+
+    vertical-align: middle;
+
+    line-height: normal;
+
+    width: 50px;
+
+  }
+
+  .settings {
+
+    border: none;
+
+    background: white;
+
+    margin-right: 3.5%;
+
+    width: 50px;
+
+    height: 50px;
+
+    padding: 0;
+
+  }
+
+  
+  
  
 
 
