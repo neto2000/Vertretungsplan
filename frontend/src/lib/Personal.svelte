@@ -49,7 +49,7 @@
     width: 50%;
 
 
-    background-color: #e2edf6;
+    background-color: var(--secondary);
 
     border-style: none;
     border-radius: 29px;
@@ -78,7 +78,7 @@
 
     font-size: 40px;
 
-    color: #003a6c;
+    color: var(--primary);
 
   }
 
@@ -123,7 +123,7 @@
 
     font-size: 30px;
 
-    color: #1c254a;
+    color: var(--accent);
 
   }
   .day-num {
@@ -137,6 +137,6 @@
 
     line-height: 8px;
     
-    color: #1c254a;
+    color: var(--accent);
   }
 </style>

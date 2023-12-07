@@ -63,7 +63,7 @@ import Table from "./Table.svelte";
 
   .plan-heading {
 
-    color: #003a6c;
+    color: var(--primary);
 
     font-family: 'Poppins', sans-serif;
 
@@ -85,14 +85,14 @@ import Table from "./Table.svelte";
 
     width: 110px;
 
-    background-color: #1c254a;
+    background-color: var(--accent);
   
 
     font-family: 'Rubik', sans-serif;
 
     font-size: 16px;
 
-    color: #e2edf6;
+    color: var(--secondary);
 
     border: none;
     border-radius: 10px;
@@ -106,7 +106,7 @@ import Table from "./Table.svelte";
 
     margin-left: 5px;
 
-    background-color: #e2edf6;
+    background-color: var(--secondary);
 
     width: 110px;
     
@@ -114,10 +114,10 @@ import Table from "./Table.svelte";
 
     font-size: 16px;
 
-    color: #1c254a;
+    color: var(--accent);
 
     border: solid;
-    border-color: #1c254a;
+    border-color: var(--accent);
     border-width: thin;
     border-radius: 10px;
 

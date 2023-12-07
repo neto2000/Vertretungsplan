@@ -4,6 +4,14 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --text: #000019;
+  --background: #ffffff;
+  --primary: #003a6c;
+  --secondary: #e2edf6;
+  --accent: #1c254a;
+
+  
 }
 
 body {

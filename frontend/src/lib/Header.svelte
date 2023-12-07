@@ -128,7 +128,7 @@
     border: none; 
     border-radius: 10px;
 
-    background-color: #003A6C;
+    background-color: var(--primary);
     
     color: #DBE6F0;  
 

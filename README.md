@@ -51,7 +51,7 @@
 
    - [x] implement VP design
    - [ ] improve all gaps!
-   - [ ] css: color variables
+   - [x] css: color variables
    - [ ] implement Personal design
    - [ ] implement Stundenplan design
 
