@@ -183,6 +183,8 @@
 
     width: 50px;
 
+    color: var(--secondary);
+
   }
 
   .settings {
