@@ -34,10 +34,10 @@
 
     </div>
 
-    <div>
-      <div>
-        
-      </div>
+    <div class="edit-container">
+      <button class="edit-button">
+        <img src="/src/assets/edit.svg" alt="Edit" class="edit-image"> 
+      </button>
 
     </div>
 
@@ -100,7 +100,7 @@
 
     row-gap: 60px;
 
-    margin-bottom: 10vh;
+    margin-bottom: 3vh;
 
   }
 
@@ -147,4 +147,46 @@
     
     color: var(--accent);
   }
+
+
+  .edit-container {
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: right;
+  }
+
+  .edit-image {
+
+    width: 30px;
+
+    
+  }
+
+  .edit-button {
+
+    border: none;
+
+    border-radius: 10px;
+
+    background-color: var(--accent);
+
+    height: 45px;
+    width: 45px;
+
+
+    margin-bottom: 40px;
+    margin-right: 55px;
+
+
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+  }
+
 </style>
