@@ -1,14 +1,12 @@
 <script>
-
+  import StundenplanTabelle from "./Stundenplan_Tabelle.svelte";
 </script>
 
 
 <section class="stundenplan-container">
   <h1 class="heading">Dein Stundenplan</h1>
 
-  <div class="tabelle">
-    
-  </div>
+  <StundenplanTabelle />
 
   <div class="edit-container">
     <button class="edit-button">
