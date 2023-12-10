@@ -1,9 +1,16 @@
 <script>
+
+  export let pages;
+
+  export let current_page;
+
   export let logged_in = true;
 
-  function test() {
+  function change_page(page) {
+    
+    console.log("test")
 
-    console.log("Main Page")
+    $: current_page = page; 
 
   }
 </script>
@@ -13,13 +20,13 @@
   <div class="header-container">
 
     <div class="link-container">
-      <button class="header-link">Stundenplan</button>
+      <button class="header-link" on:click={() => change_page(pages.Stundenplan)}>Stundenplan</button>
       <button class="header-link">Aushänge</button>
       <button class="header-link">Über uns</button>
     </div>
 
     <div class="logo-container">
-      <button class="logo" on:click={test}>VP</button>
+      <button class="logo" on:click={() => change_page(pages.Main)}>VP</button>
     </div>
 
     <div class="account">

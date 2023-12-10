@@ -4,17 +4,24 @@
     import Personal from './lib/Personal.svelte';
     import Stundenplan from './lib/Stundenplan.svelte';
 
+    const Pages = {
+        Main: 'Main',
+        Stundenplan: 'Stundenplan',
+        About: 'About',
+        Anhaenge: 'Anhaenge',
+    }
 
-    let main_page = false;
+
+    let current_page = Pages.Main;
 </script>
 
 <main>
-    <Header />
+    <Header pages={Pages} bind:current_page={current_page} />
 
-    {#if main_page}
+    {#if current_page == Pages.Main}
         <Personal />
         <Plan />
-    {:else}
+    {:else if current_page == Pages.Stundenplan}
         <Stundenplan />
     {/if}
 </main>

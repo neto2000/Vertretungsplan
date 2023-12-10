@@ -1,15 +1,25 @@
 <script>
   import StundenplanTabelle from "./Stundenplan_Tabelle.svelte";
+
+  let is_edit = false
+
+  function edit() {
+
+
+    is_edit = !is_edit;
+
+  }
+
 </script>
 
 
 <section class="stundenplan-container">
   <h1 class="heading">Dein Stundenplan</h1>
 
-  <StundenplanTabelle />
+  <StundenplanTabelle is_edit={is_edit}/>
 
   <div class="edit-container">
-    <button class="edit-button">
+    <button class="edit-button" on:click={edit}>
       <img src="/src/assets/edit.svg" alt="Edit" class="edit-image"> 
     </button>
   </div>
@@ -58,6 +68,9 @@
 
 
   .edit-container {
+
+    margin-top: 60px;
+
 
     width: 100%;
 
