@@ -54,9 +54,11 @@
    - [x] css: color variables
    - [ ] implement Personal design
    - [ ] implement Stundenplan design
+   - [ ] click cursor on buttons
 
    #### Dein Stundenplan
    - [ ] normale Anzeige: wird nur so hoch, wie der längste Tag
    - [ ] Bearbeitungsmodus: volle 10 Stunden
+   - [ ] Bearbeitungsmodus: exsisting Cells: edit button on hover
 
   ### Backend (rust)
