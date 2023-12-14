@@ -16,8 +16,19 @@
     [{"fach":"Mathe", "teacher":"Hr. Mustermann", "room": "442"}, 
      {"fach":"Deutsch", "teacher":"Hr. Mustermann", "room": "442"}, 
      {"fach":"Mathe", "teacher":"Hr. Mustermann", "room": "442"},
+     {"fach":"Frei"},
+     {"fach":"Mathe", "teacher":"Hr. Mustermann", "room": "442"}],
+    [{"fach":"Mathe", "teacher":"Hr. Mustermann", "room": "442"}, 
+     {"fach":"Deutsch", "teacher":"Hr. Mustermann", "room": "442"}, 
+     {"fach":"Mathe", "teacher":"Hr. Mustermann", "room": "442"},
+     {"fach":"Frei"},
+     {"fach":"Mathe", "teacher":"Hr. Mustermann", "room": "442"}],
+    [{"fach":"Mathe", "teacher":"Hr. Mustermann", "room": "442"}, 
+     {"fach":"Deutsch", "teacher":"Hr. Mustermann", "room": "442"}, 
+     {"fach":"Mathe", "teacher":"Hr. Mustermann", "room": "442"},
      {"fach":"Mathe", "teacher":"Hr. Mustermann", "room": "442"},
      {"fach":"Mathe", "teacher":"Hr. Mustermann", "room": "442"}],
+
   ];
 
 </script>
@@ -32,21 +43,73 @@
     <th class="table-head">Donnerstag</th>
     <th class="table-head">Freitag</th>
   </tr>
-  {#each table as row, i (i)}
-    <tr class="row">
-    <td class="table-cell">{i + 1}. Stunde</td>
-    {#each row as j}
-        <td class="table-cell">
-          <b style="font-weight: 600;">{j.fach}</b>
-          Hr. Mustermann
-          <br>
-          440
 
-        </td>
+
+  {#if is_edit}
+    
+
+    {#each {length: 10} as _, i }
+      <tr class="row">
+        <td class="table-cell">{i + 1}. Stunde</td>
+
+        {#if i < table.length}
+
+          {#each table[i] as item}
+
+            {#if item.fach == "Frei"}
+               <td class="table-cell">Add</td>
+
+            {:else}
+              <td class="table-cell"> 
+                <b style="font-weight: 600;">{item.fach}</b>
+                Hr. Mustermann
+                <br>
+                440 
+              </td>
+            {/if}
+          {/each}
+
+
+
+        {:else}
+
+          {#each {length: 5} as _, i }
+          
+          <td class="table-cell">Add</td>
+
+          {/each}
+        {/if}
+      </tr>
+    {/each}
+    
+
+
+  {:else}
+
+
+
+    {#each table as row, i (i)}
+      <tr class="row">
+      <td class="table-cell">{i + 1}. Stunde</td>
+      {#each row as j}
+          <td class="table-cell">
+
+            {#if j.fach != "Frei"}
+              <b style="font-weight: 600;">{j.fach}</b>
+              Hr. Mustermann
+              <br>
+              440  
+            {/if}  
+
+          </td>
+      {/each}
+
+      </tr>
     {/each}
 
-    </tr>
-  {/each} 
+
+  {/if}
+
 </div>
 
 
@@ -65,6 +128,7 @@
 
     width: 12vw;
 
+    height: 6.5vh;
   }
 
   .table-cell {
