@@ -57,7 +57,11 @@
           {#each table[i] as item}
 
             {#if item.fach == "Frei"}
-               <td class="table-cell">Add</td>
+              <td class="table-cell">
+                <button class="add-container">
+                  <img class="add" src="./src/assets/add.svg" alt="Add">
+                </button>
+              </td>
 
             {:else}
               <td class="table-cell"> 
@@ -75,7 +79,13 @@
 
           {#each {length: 5} as _, i }
           
-          <td class="table-cell">Add</td>
+          <td class="table-cell">
+          
+              <button class="add-container">
+                <img class="add" src="./src/assets/add.svg" alt="Add">
+              </button>
+
+          </td>
 
           {/each}
         {/if}
@@ -135,6 +145,36 @@
 
     vertical-align: center;
 
+    text-align: center;
+
     height: 6.5vh;
+
   }
+
+  
+  .add-container {
+
+    background-color: var(--accent);
+
+    border: none;
+
+    border-radius: 25px;
+
+    
+    width: 30px;
+    height: 30px;
+
+    
+    margin: auto;
+
+    padding: 0px;
+  }
+
+  .add {
+
+    width: 30px;
+    height: 30px;
+
+  }
+
 </style>
