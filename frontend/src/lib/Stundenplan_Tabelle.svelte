@@ -64,11 +64,36 @@
               </td>
 
             {:else}
-              <td class="table-cell"> 
-                <b style="font-weight: 600;">{item.fach}</b>
-                Hr. Mustermann
-                <br>
-                440 
+              <td class="table-cell">
+
+                {#if is_edit}
+
+                  <button class="edit-button">
+                    <b style="font-weight: 600;">{item.fach}</b>
+                    Hr. Mustermann
+                    <br>
+                    440
+
+                                  
+                  </button>
+
+                  <button class="mini-edit-container">
+                    <div class="edit-circle">                      
+                      <img class="edit-pic" src="./src/assets/edit.svg" alt="Edit">
+                    </div>
+
+                  </button>
+
+                {:else}
+
+                  <b style="font-weight: 600;">{item.fach}</b>
+                  Hr. Mustermann
+                  <br>
+                  440
+                {/if}
+
+
+                 
               </td>
             {/if}
           {/each}
@@ -149,9 +174,12 @@
 
     height: 6.5vh;
 
+    position: relative;
+
   }
 
   
+
   .add-container {
 
     background-color: var(--accent);
@@ -174,6 +202,105 @@
 
     width: 30px;
     height: 30px;
+
+  }
+
+  .edit-button {
+
+    width: 100%;
+
+
+    height: 6.5vh;
+
+    text-align: center;
+
+
+    border: none;
+
+    background-color: rgba(0,0,0,0);
+
+    padding: 0px 0px 0px 0px;
+
+
+
+    font-size: 16px;
+
+    font-family: "Rubik", sans-serif;
+
+  } 
+  
+
+  .mini-edit-container {
+    
+    border: transparent;
+
+    background-color: transparent;
+
+
+    width: 100%;
+
+    height: 6.5vh;
+
+    z-index: 2;
+
+    position: absolute;
+
+    top: 0; 
+
+    display: flex;
+ 
+    transition: background-color 0.5s;
+  }
+  .mini-edit-container:hover {
+
+    background-color: rgba(226, 237, 246, 0.5);
+
+  } 
+
+  .mini-edit-container:hover .edit-circle{
+
+    opacity: 100%;
+
+
+
+  }
+
+  .edit-circle {
+
+    display: flex;
+
+    width: 30px;
+
+    height: 30px;
+
+
+    z-index: 2;
+    
+
+    border: none;
+
+    border-radius: 20px;
+
+    background-color: var(--accent);
+
+    margin: auto;
+
+    padding: 0px;
+
+
+    opacity: 0%;
+
+    transition: opacity 0.5s;
+
+  }
+
+  .edit-pic {
+    
+    width: 24px;
+    height: 24px;
+
+
+    margin: auto;
 
   }
 

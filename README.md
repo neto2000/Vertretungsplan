@@ -57,8 +57,9 @@
    - [ ] click cursor on buttons
 
    #### Dein Stundenplan
-   - [ ] normale Anzeige: wird nur so hoch, wie der längste Tag
-   - [ ] Bearbeitungsmodus: volle 10 Stunden
-   - [ ] Bearbeitungsmodus: exsisting Cells: edit button on hover
+   - [x] normale Anzeige: wird nur so hoch, wie der längste Tag
+   - [x] Bearbeitungsmodus: volle 10 Stunden
+   - [x] Bearbeitungsmodus: exsisting Cells: edit button on hover
+   - [ ] Add mask
 
   ### Backend (rust)
