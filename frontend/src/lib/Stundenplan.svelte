@@ -20,7 +20,16 @@
 
   <div class="edit-container">
     <button class="edit-button" on:click={edit}>
-      <img src="/src/assets/edit.svg" alt="Edit" class="edit-image"> 
+
+      {#if is_edit}
+         <!-- content here -->
+        <img src="/src/assets/add.svg" alt="Edit" class="cancel-image"> 
+      {:else}
+         
+        <img src="/src/assets/edit.svg" alt="Edit" class="edit-image"> 
+
+      {/if}
+
     </button>
   </div>
 
@@ -81,9 +90,16 @@
 
   .edit-image {
 
-    width: 45px;
+    width: 50px;
 
     
+  }
+
+  .cancel-image {
+
+    width: 60px;
+
+    transform: rotate(45deg);
   }
 
   .edit-button {

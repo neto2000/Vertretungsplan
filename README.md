@@ -55,6 +55,7 @@
    - [ ] implement Personal design
    - [ ] implement Stundenplan design
    - [ ] click cursor on buttons
+   - [ ] button animations
 
    #### Dein Stundenplan
    - [x] normale Anzeige: wird nur so hoch, wie der längste Tag
