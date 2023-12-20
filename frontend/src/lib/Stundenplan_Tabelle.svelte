@@ -1,4 +1,7 @@
 <script>
+
+  import AddMask from "./Add_Mask.svelte";
+
   
   export let is_edit = false;
 
@@ -35,6 +38,9 @@
 
 
 <div>
+
+  <AddMask />
+
   <tr class="row">
     <th class="table-head"></th>
     <th class="table-head">Montag</th>
