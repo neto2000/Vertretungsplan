@@ -62,5 +62,6 @@
    - [x] Bearbeitungsmodus: volle 10 Stunden
    - [x] Bearbeitungsmodus: exsisting Cells: edit button on hover
    - [ ] Add mask
+   - [ ] Add Mask: Zwei Stunden selectors für Doppelstunden etc.
 
   ### Backend (rust)

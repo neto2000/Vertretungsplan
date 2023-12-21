@@ -110,6 +110,15 @@
     font-family: 'Rubik', sans-serif;
 
     font-size: 16px;
+
+    cursor: pointer;
+
+  }
+
+  .header-link:hover {
+
+    opacity: 60%;
+
   }
 
   .logo {
@@ -122,7 +131,7 @@
 
     font-size: 40px;
 
-
+    cursor: pointer;
   }
 
   .signup {

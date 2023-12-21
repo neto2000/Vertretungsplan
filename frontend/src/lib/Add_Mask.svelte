@@ -6,7 +6,49 @@
 
 <div class="mask-container">
   <div class="mask-background">
+    <h1 class="add-heading">Stunde hinzufügen</h1>
 
+    <div class="add-grid">
+
+      <div class="icon-container">
+
+      </div>
+
+      <div class="selector-container">
+
+      </div>
+
+      
+
+      <div class="icon-container">
+
+      </div>
+
+      <div class="selector-container">
+
+      </div>
+
+
+      
+      <div class="icon-container">
+
+      </div>
+
+      <div class="selector-container">
+
+      </div>
+
+
+
+      <div class="icon-container">
+
+      </div>
+
+      <div class="selector-container">
+
+      </div>
+
+    </div>
   </div>
 </div>
 
@@ -51,5 +93,27 @@
     border-radius: 26px;
 
     box-shadow: 0px 4px 4px 2px rgba(0, 0, 0, 0.2);
+
+
+    text-align: center;
   }
+
+  .add-heading {
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 40px;
+
+  }
+
+
+  .add-grid {
+
+    display: grid;
+
+    grid-template-columns: 15% 85%;
+
+
+  }
+
 </style>
