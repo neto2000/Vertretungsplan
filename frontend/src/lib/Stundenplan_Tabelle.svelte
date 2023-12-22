@@ -5,6 +5,8 @@
   
   export let is_edit = false;
 
+  let show_mask = false;
+
   let table = [
     [{"fach":"Mathe", "teacher":"Hr. Mustermann", "room": "442"}, 
      {"fach":"Deutsch", "teacher":"Hr. Mustermann", "room": "442"}, 
@@ -34,12 +36,21 @@
 
   ];
 
+
+  function mask() {
+
+    show_mask = true;
+  }
+
 </script>
 
 
 <div>
 
-  <AddMask />
+  {#if show_mask}
+
+    <AddMask bind:show_mask={show_mask}/>
+  {/if}
 
   <tr class="row">
     <th class="table-head"></th>
@@ -64,7 +75,7 @@
 
             {#if item.fach == "Frei"}
               <td class="table-cell">
-                <button class="add-container">
+                <button class="add-container" on:click={mask}>
                   <img class="add" src="./src/assets/add.svg" alt="Add">
                 </button>
               </td>
@@ -83,7 +94,7 @@
                                   
                   </button>
 
-                  <button class="mini-edit-container">
+                  <button class="mini-edit-container" on:click={mask}>
                     <div class="edit-circle">                      
                       <img class="edit-pic" src="./src/assets/edit.svg" alt="Edit">
                     </div>
@@ -112,7 +123,7 @@
           
           <td class="table-cell">
           
-              <button class="add-container">
+              <button class="add-container" on:click={mask}>
                 <img class="add" src="./src/assets/add.svg" alt="Add">
               </button>
 

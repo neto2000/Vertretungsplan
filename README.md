@@ -61,7 +61,7 @@
    - [x] normale Anzeige: wird nur so hoch, wie der längste Tag
    - [x] Bearbeitungsmodus: volle 10 Stunden
    - [x] Bearbeitungsmodus: exsisting Cells: edit button on hover
-   - [ ] Add mask
-   - [ ] Add Mask: Zwei Stunden selectors für Doppelstunden etc.
+   - [x] Add mask
+   - [x] Add Mask: Zwei Stunden selectors für Doppelstunden etc.
 
   ### Backend (rust)
