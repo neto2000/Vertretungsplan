@@ -22,7 +22,6 @@
     <button class="edit-button" on:click={edit}>
 
       {#if is_edit}
-         <!-- content here -->
         <img src="/src/assets/add.svg" alt="Edit" class="cancel-image"> 
       {:else}
          
@@ -117,6 +116,7 @@
     margin-bottom: 40px;
     margin-right: 55px;
 
+    cursor: pointer;  
 
 
     display: flex;

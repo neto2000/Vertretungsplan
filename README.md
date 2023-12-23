@@ -54,7 +54,7 @@
    - [x] css: color variables
    - [ ] implement Personal design
    - [ ] implement Stundenplan design
-   - [ ] click cursor on buttons
+   - [x] click cursor on buttons
    - [ ] button animations
 
    #### Dein Stundenplan

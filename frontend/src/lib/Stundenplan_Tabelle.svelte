@@ -209,6 +209,8 @@
     width: 30px;
     height: 30px;
 
+    cursor: pointer;
+
     
     margin: auto;
 
@@ -237,7 +239,8 @@
     background-color: rgba(0,0,0,0);
 
     padding: 0px 0px 0px 0px;
-
+    
+    cursor: pointer;
 
 
     font-size: 16px;
@@ -252,6 +255,9 @@
     border: transparent;
 
     background-color: transparent;
+
+    cursor: pointer;
+
 
 
     width: 100%;

@@ -97,6 +97,9 @@ import Table from "./Table.svelte";
     border: none;
     border-radius: 10px;
 
+
+     cursor: pointer;
+
   }
 
   .not-active {
@@ -120,6 +123,14 @@ import Table from "./Table.svelte";
     border-color: var(--accent);
     border-width: thin;
     border-radius: 10px;
+
+    
+    cursor: pointer;
+  }
+
+  .not-active:hover {
+
+    opacity: 70%;
 
   }
 

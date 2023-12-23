@@ -1,5 +1,16 @@
 <script>
   import PersonalRow from "./PersonalRow.svelte";
+
+  export let pages
+
+  export let current_page
+
+
+  function open_stundenplan() {
+
+    current_page = pages.Stundenplan;
+
+  }
 </script>
 
 
@@ -35,7 +46,7 @@
     </div>
 
     <div class="edit-container">
-      <button class="edit-button">
+      <button class="edit-button" on:click={open_stundenplan}>
         <img src="/src/assets/edit.svg" alt="Edit" class="edit-image"> 
       </button>
 
@@ -180,6 +191,7 @@
     margin-bottom: 40px;
     margin-right: 55px;
 
+    cursor: pointer;
 
 
     display: flex;

@@ -19,10 +19,10 @@
     <Header pages={Pages} bind:current_page={current_page} />
 
     {#if current_page == Pages.Main}
-        <Personal />
+        <Personal pages={Pages} bind:current_page={current_page} />
         <Plan />
     {:else if current_page == Pages.Stundenplan}
-        <Stundenplan />
+        <Stundenplan  />
     {/if}
 </main>
 
