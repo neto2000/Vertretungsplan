@@ -28,7 +28,7 @@
 </script>
 
 
-<div class="mask-container">
+ <!--div class="mask-container"-->
   <div class="mask-background">
     <h1 class="add-heading">Stunde hinzufügen</h1>
 
@@ -118,7 +118,7 @@
 
     </div>
   </div>
-</div>
+<!--/div-->
 
 
 
@@ -139,13 +139,14 @@
     align-items: center;
 
     width: 100%;
-    height: 91.5vh;
+    height: 100vh;
+
 
   }
 
   .mask-background {
 
-
+    position: fixed;
 
     background-color: white;
 

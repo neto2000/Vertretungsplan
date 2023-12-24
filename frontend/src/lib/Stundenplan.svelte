@@ -1,6 +1,8 @@
 <script>
   import StundenplanTabelle from "./Stundenplan_Tabelle.svelte";
 
+  import AddMask from "./Add_Mask.svelte";
+
   let is_edit = false
 
   function edit() {
@@ -12,6 +14,7 @@
 
 </script>
 
+<AddMask show_mask={true}/>
 
 <section class="stundenplan-container">
   <h1 class="heading">Dein Stundenplan</h1>
@@ -40,6 +43,8 @@
 
 
   .stundenplan-container {
+
+    margin-top: 10vh;
 
     background-color: var(--secondary);
 
