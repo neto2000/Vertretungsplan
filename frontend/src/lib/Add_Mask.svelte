@@ -1,6 +1,7 @@
 <script>
 
-  export let show_mask;
+  import { show_add_mask } from "../stores";
+
 
   let teacher = "";
 
@@ -14,13 +15,13 @@
 
   function quit() {
 
-    show_mask = !show_mask;
-
+    show_add_mask.set(false);
   }
 
   function add() {
  
-    show_mask = !show_mask;
+    
+    show_add_mask.set(false);
 
   }
 

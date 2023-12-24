@@ -1,7 +1,19 @@
 <script>
+  import { show_add_mask } from "../stores";
+
   import StundenplanTabelle from "./Stundenplan_Tabelle.svelte";
 
   import AddMask from "./Add_Mask.svelte";
+
+
+  let show_mask;
+
+  show_add_mask.subscribe((value) => {
+
+    show_mask = value;
+  });
+  
+
 
   let is_edit = false
 
@@ -14,7 +26,10 @@
 
 </script>
 
-<AddMask show_mask={true}/>
+{#if show_mask} 
+  <AddMask/>
+{/if}
+
 
 <section class="stundenplan-container">
   <h1 class="heading">Dein Stundenplan</h1>

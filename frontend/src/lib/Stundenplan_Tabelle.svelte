@@ -1,6 +1,6 @@
 <script>
 
-  import AddMask from "./Add_Mask.svelte";
+  import { show_add_mask } from "../stores";
 
   
   export let is_edit = false;
@@ -39,7 +39,7 @@
 
   function mask() {
 
-    show_mask = true;
+    show_add_mask.set(true);
   }
 
 </script>
@@ -47,10 +47,6 @@
 
 <div>
 
-  {#if show_mask}
-
-    <AddMask bind:show_mask={show_mask}/>
-  {/if}
 
   <tr class="row">
     <th class="table-head"></th>
