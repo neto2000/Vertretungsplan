@@ -168,6 +168,16 @@
     text-align: center;
 
     vertical-align: middle;
+
+
+    top: 50%;
+
+    left: 50%;
+
+
+    transform: translate(-50%,-50%);
+
+
   }
 
   .add-heading {
