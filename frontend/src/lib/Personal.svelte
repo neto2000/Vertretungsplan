@@ -1,14 +1,13 @@
 <script>
+
+  import { current_page, Pages } from "../stores";
+
   import PersonalRow from "./PersonalRow.svelte";
 
-  export let pages
-
-  export let current_page
-
-
+ 
   function open_stundenplan() {
 
-    current_page = pages.Stundenplan;
+    current_page.set(Pages.Stundenplan);
 
   }
 </script>

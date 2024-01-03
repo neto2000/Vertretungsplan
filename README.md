@@ -56,7 +56,7 @@
    - [ ] implement Stundenplan design
    - [x] click cursor on buttons
    - [ ] button animations
-   - [ ] current Page in stores.js
+   - [x] current Page in stores.js
 
    #### Dein Stundenplan
    - [x] normale Anzeige: wird nur so hoch, wie der längste Tag

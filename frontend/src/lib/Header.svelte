@@ -1,18 +1,15 @@
 <script>
 
-  export let pages;
+  import { current_page, Pages } from "../stores";
 
-  export let current_page;
-
-  export let logged_in = true;
+  export let logged_in = false;
 
   function change_page(page) {
     
-    console.log("test")
-
-    $: current_page = page; 
+    current_page.set(page);
 
   }
+
 </script>
 
 <header class="header">
@@ -20,13 +17,13 @@
   <div class="header-container">
 
     <div class="link-container">
-      <button class="header-link" on:click={() => change_page(pages.Stundenplan)}>Stundenplan</button>
+      <button class="header-link" on:click={() => change_page(Pages.Stundenplan)}>Stundenplan</button>
       <button class="header-link">Aushänge</button>
       <button class="header-link">Über uns</button>
     </div>
 
     <div class="logo-container">
-      <button class="logo" on:click={() => change_page(pages.Main)}>VP</button>
+      <button class="logo" on:click={() => change_page(Pages.Main)}>VP</button>
     </div>
 
     <div class="account">
@@ -36,7 +33,7 @@
           <img class="user-pic" src="./src/assets/account_circle.svg" alt="account" />
         </button>
       {:else}
-        <button class="login">Log In</button>
+        <button class="login" on:click={() => change_page(Pages.Login)}>Log In</button>
         <button class="signup">Sign Up</button>
       {/if} 
     </div>

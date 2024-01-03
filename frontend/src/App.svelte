@@ -1,29 +1,46 @@
 <script>
+
+
+    import { current_page, Pages } from "./stores";
+
     import Header from './lib/Header.svelte'
     import Plan from './lib/Plan.svelte'
     import Personal from './lib/Personal.svelte';
     import Stundenplan from './lib/Stundenplan.svelte';
+    import Login from "./lib/Login.svelte";
 
-    const Pages = {
-        Main: 'Main',
-        Stundenplan: 'Stundenplan',
-        About: 'About',
-        Anhaenge: 'Anhaenge',
-    }
+    let current;
+
+    current_page.subscribe((value) => {
+        current = value;
+    })
 
 
-    let current_page = Pages.Main;
 </script>
 
 <main>
-    <Header pages={Pages} bind:current_page={current_page} />
 
-    {#if current_page == Pages.Main}
-        <Personal pages={Pages} bind:current_page={current_page} />
+    {#if current == Pages.Main}
+         
+        <Header  />
+
+        <Personal />
         <Plan />
-    {:else if current_page == Pages.Stundenplan}
+
+    {:else if  current == Pages.Stundenplan}
+
+        <Header  />
+
         <Stundenplan  />
+    {:else if current == Pages.Login}
+
+        <Login />
+
     {/if}
+
+
+
+    
 </main>
 
 <style>
