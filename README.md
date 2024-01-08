@@ -27,7 +27,8 @@
    - [ ] new color palette
    - [ ] Impressum
    - [ ] design Background
-   - [ ] Login page
+   - [x] Login page
+   - [ ] background for Login page
    - [ ] Settings Page
    - [ ] Admin Panel
    - [ ] Aushänge
