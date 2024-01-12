@@ -8,6 +8,7 @@ export const Pages = {
         About: 'About',
         Anhaenge: 'Anhaenge',
         Login: 'Login',
+        SignUp: 'SignUp',
 }
 
 export const current_page = writable(Pages.Main);

@@ -3,8 +3,9 @@
   import { current_page, Pages } from "../stores";
 
 
-  let show_alert = false;
+  let show_alert1 = false;
 
+  let show_alert2 = false;
 
   function change_page(page) {
     
@@ -28,20 +29,30 @@
 
     <div class="mid-section">
 
-      <h1 class="heading">VP</h1>
+
+      <input type="text" class="input-box" placeholder="Enter your Username">
 
       <input type="text" class="input-box" placeholder="Enter your E-Mail">
+      
+
+      {#if show_alert1} 
+        <p class="alert-text" style="margin-right: 280px;">invalid email</p>
+      {:else} 
+        <p class="alert-text" style="color: white;">nothing to see here</p>
+      {/if}
 
       <input type="password" class="input-box" placeholder="Enter your password">
 
-      {#if show_alert} 
-        <p class="alert-text">Wrong password</p>
+      <input type="password" class="input-box" placeholder="Retype your password">
+
+      {#if show_alert2} 
+        <p class="alert-text">passwords do not match</p>
       {:else} 
         <p class="alert-text" style="color: white;">nothing to see here</p>
       {/if}
 
 
-      <button class="login-button">Log In</button>
+      <button class="login-button">Register</button>
 
       <p class="trenner-text">- or -</p>
 
@@ -102,7 +113,7 @@
 
 
 
-
+    margin-top: 30px;
 
   }
 
@@ -192,18 +203,18 @@
 
     margin: 0;
 
-      margin-right: 250px;
+    margin-right: 220px;
 
   }
 
   .heading {
 
-    font-family: 'Megrim', sans-serif;
+    font-family: 'Poppins', sans-serif;
 
-    font-size: 50px;
+    font-size: 40px;
 
 
-    margin-top: 20px;
+    margin: 0;
   }
 
   .back {

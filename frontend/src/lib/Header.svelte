@@ -34,7 +34,7 @@
         </button>
       {:else}
         <button class="login" on:click={() => change_page(Pages.Login)}>Log In</button>
-        <button class="signup">Sign Up</button>
+        <button class="signup" on:click={() => change_page(Pages.SignUp)}>Sign Up</button>
       {/if} 
     </div>
 

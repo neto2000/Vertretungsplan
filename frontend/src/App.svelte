@@ -8,6 +8,7 @@
     import Personal from './lib/Personal.svelte';
     import Stundenplan from './lib/Stundenplan.svelte';
     import Login from "./lib/Login.svelte";
+    import SignUp from "./lib/SignUp.svelte";
 
     let current;
 
@@ -35,6 +36,10 @@
     {:else if current == Pages.Login}
 
         <Login />
+
+    {:else if current == Pages.SignUp}
+        
+        <SignUp />
 
     {/if}
 
