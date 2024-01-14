@@ -1,6 +1,6 @@
 <script>
 
-  import { current_page, Pages } from "../stores";
+  import { is_admin, current_page, Pages } from "../stores";
 
   export let logged_in = false;
 
@@ -10,6 +10,11 @@
 
   }
 
+  let l_is_admin;
+  
+  is_admin.subscribe((value) => {
+    l_is_admin = value;
+  })
 </script>
 
 <header class="header">
@@ -19,6 +24,12 @@
     <div class="link-container">
       <button class="header-link" on:click={() => change_page(Pages.Stundenplan)}>Stundenplan</button>
       <button class="header-link">Aushänge</button>
+
+      {#if l_is_admin}
+         
+        <button class="header-link" on:click={() => change_page(Pages.Admin)}>Admin</button>
+      {/if}
+
       <button class="header-link">Über uns</button>
     </div>
 
