@@ -25,15 +25,22 @@
     {#if current == Pages.Main}
          
         <Header  />
+        
+        <div class="header-space">
 
-        <Personal />
-        <Plan />
+            <Personal />
+            <Plan />
 
+        </div>
     {:else if  current == Pages.Stundenplan}
 
         <Header  />
 
-        <Stundenplan  />
+        <div class="header-space">
+
+            <Stundenplan  />
+
+        </div>
     {:else if current == Pages.Login}
 
         <Login />
@@ -46,8 +53,11 @@
 
         <Header  />
 
-        <Admin /> 
+        <div class="header-space">
+            
+            <Admin /> 
 
+        </div>
     {/if}
 
 
@@ -56,4 +66,11 @@
 </main>
 
 <style>
+
+    .header-space {
+    
+      padding-top: 8.5vh;  
+
+    }
+
 </style>

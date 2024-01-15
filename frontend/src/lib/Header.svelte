@@ -1,8 +1,42 @@
 <script>
 
   import { is_admin, current_page, Pages } from "../stores";
+  import { fly } from 'svelte/transition';
 
   export let logged_in = false;
+
+
+  
+  let show_header = false;
+
+  
+
+  let y = 0;
+
+
+  let last_y = 0;
+  
+  function get_direction(y) {
+
+    let dy = y - last_y;
+
+    last_y = y;
+
+
+    if (dy > 0) {
+
+      return false;
+    }
+    else {
+
+      return true;
+    }
+
+  }
+
+
+  $: show_header = get_direction(y)
+
 
   function change_page(page) {
     
@@ -17,7 +51,11 @@
   })
 </script>
 
-<header class="header">
+
+{#if show_header}
+
+
+<header class="header" transition:fly={{ delay: 10, duration: 300, x: 0, y: -500, opacity: 0.5}}>
 
   <div class="header-container">
 
@@ -53,6 +91,12 @@
 
 </header>
 
+{/if}
+
+
+<svelte:window bind:scrollY={y} />
+
+
 <style>
 
   .header {
@@ -66,8 +110,13 @@
     border-width: thin;
 
     border-color: #DDDDDD;
+  
+    background-color: #FFFFFF;  
 
 
+    position: fixed;
+
+    z-index: 5;
   }
 
   .header-container {
