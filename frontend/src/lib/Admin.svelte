@@ -1,11 +1,11 @@
 <script>
-
+ import AdminPlan from "./Admin_Plan.svelte";
 </script>
 
 
 <section>
   
-  <h1>Admin Panel</h1>
+  <AdminPlan />
 
 </section>
 
