@@ -77,12 +77,11 @@
 
   .active {
 
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: 6px;
+    padding-bottom: 6px;
 
-    margin-right: 5px;
 
-    width: 110px;
+    width: 30px;
 
     background-color: var(--accent);
   
@@ -103,14 +102,17 @@
 
   .not-active {
 
-    padding-top: 7px;
-    padding-bottom: 7px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    padding-left: 20px;
+    padding-right: 20px;
 
-    margin-left: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
 
     background-color: var(--secondary);
 
-    width: 110px;
+    /*width: 110px;*/
     
     font-family: 'Rubik', sans-serif;
 
@@ -127,11 +129,6 @@
     cursor: pointer;
   }
 
-  .not-active:hover {
-
-    opacity: 70%;
-
-  }
 
   .info-container {
 
