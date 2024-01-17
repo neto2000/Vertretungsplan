@@ -1,7 +1,8 @@
 <script>
   import AdminPlanRow from "./Admin_Plan_Row.svelte";
 
-  let rows = 1
+  let rows = 1;
+
 </script>
 
 
@@ -24,6 +25,8 @@
     {/each}
 
   </table>
+
+  <button class="add_button" on:click={() => {rows++}}>Zeile hinzufügen</button>
 </div>
 
 
@@ -43,6 +46,8 @@
 
 
     overflow: hidden;
+
+    
 
 
     box-shadow: 0px 4px 4px 2px rgba(0, 0, 0, 0.2);
