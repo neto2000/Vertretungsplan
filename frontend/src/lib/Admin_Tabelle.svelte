@@ -1,22 +1,25 @@
 <script>
   import AdminPlanRow from "./Admin_Plan_Row.svelte";
+  import { admin_rows } from "../stores";
 
 
+  let rows = [];
 
-  let row_count = 2;
+  admin_rows.subscribe((value) => {
+
+    rows = value;
+  })
 
 
-  let rows = [["7b", "5-6", "D", "Mustermann", "Horst", "D", "400", "Vertretung", "-"],["8b", "5-6", "D", "Mustermann", "Horst", "D", "400", "Vertretung", "-"]]
+  let row_count;
+
+  $: row_count = rows.length;
 
 
 
   function add_row() {
 
-    row_count++;
-
-    rows.push(["0b", "5-6", "D", "Mustermann", "Horst", "D", "400", "Vertretung", "-"])
-
-
+    admin_rows.update((n) => [...n, ["0b", "5-6", "D", "Mustermann", "Horst", "D", "400", "Vertretung", "-"]])
   }
 
   function delete_row(row) {
@@ -25,17 +28,12 @@
 
     console.log(rows)
 
-    row_count--;
+    admin_rows.set(rows)
+
   }
 
 
-  $: print_rows(rows);
-
-  function print_rows(input) {
-
-    console.log(input)
-  }
-
+  
 </script>
 
 <div class="table-section">
@@ -61,7 +59,7 @@
       </tr>
 
       {#each Array(row_count) as _, i}
-        <AdminPlanRow id={i} bind:row_list={rows[i]}  /> 
+        <AdminPlanRow id={i}  /> 
       {/each}
 
     </table>
@@ -73,8 +71,10 @@
     </div>
 
   </div>
-
-  <button class="add-button" on:click={() => {add_row()}}>Zeile hinzufügen</button>
+  
+  <div class="add-container">
+    <button class="add-button" on:click={() => {add_row()}}>Zeile hinzufügen</button>
+  </div>
 </div>
 
 <style>
@@ -119,6 +119,15 @@
 
   }
 
+  .add-container {
+
+    display: flex;
+
+    justify-content: center;
+
+    margin-bottom: 4vh;
+  }
+
   .add-button {
 
     margin: 0 auto; 
@@ -134,10 +143,18 @@
 
     margin-top: 45px;
 
+    margin-left: 2.5%;
+
   } 
 
   .delete-button {
 
-    height: 35px;
+    height: 25px;
+
+    width: 25px;
+
+    margin-top: 5px;
+
+    margin-bottom: 5px;
   }
 </style>

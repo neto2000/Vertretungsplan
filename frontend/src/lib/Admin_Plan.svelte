@@ -1,5 +1,8 @@
 <script>
   import AdminTabelle from "./Admin_Tabelle.svelte";
+
+  let info_text = "";
+
 </script>
 
 
@@ -17,7 +20,7 @@
       <h3 class="info-head">Infos</h3>
 
       <div class="infos">
-        
+        <textarea bind:value={info_text} cols="30" rows="10" class="info_textarea"></textarea> 
       </div>
 
     </div>
@@ -167,7 +170,23 @@
 
   .infos {
     
-    margin-top: 2vh
+    margin-top: 2vh;
+    margin-left: 7vh;
+    margin-right: 7vh;
+  }
+
+  .info_textarea {
+
+    font-family: 'rubik', sans-serif;
+
+
+    width: 100%;
+
+    height: 25vh;
+
+    border: 1px solid black;
+
+    border-radius: 5px;
 
   }
 </style>

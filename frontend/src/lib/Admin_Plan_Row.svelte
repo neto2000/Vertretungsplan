@@ -1,8 +1,17 @@
 <script>
 
+  import { admin_rows } from "../stores";
+
   export let id;
 
-  export let row_list = ["7b", "5-6", "D", "Mustermann", "Horst", "D", "400", "Vertretung", "-"];
+  //export let row_list = ["7b", "5-6", "D", "Mustermann", "Horst", "D", "400", "Vertretung", "-"];
+
+  let row_list = [];
+
+  admin_rows.subscribe((value) => {
+
+    row_list = value[id];
+  })
 
 
 </script>

@@ -2,7 +2,7 @@ import { writable } from 'svelte/store';
 
 export const show_add_mask = writable(false);
 
-export const is_admin = writable();
+export const is_admin = writable(true);
 
 export const Pages = {
         Main: 'Main',
