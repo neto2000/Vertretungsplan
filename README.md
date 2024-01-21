@@ -58,6 +58,7 @@
    - [x] click cursor on buttons
    - [ ] button animations
    - [x] current Page in stores.js
+   - [ ] use browsers back button (url hash)
 
    #### Dein Stundenplan
    - [x] normale Anzeige: wird nur so hoch, wie der längste Tag
