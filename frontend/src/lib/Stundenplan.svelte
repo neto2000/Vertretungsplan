@@ -40,10 +40,10 @@
     <button class="edit-button" on:click={edit}>
 
       {#if is_edit}
-        <img src="/src/assets/add.svg" alt="Edit" class="cancel-image"> 
+        <img src="/images/add.svg" alt="Edit" class="cancel-image"> 
       {:else}
          
-        <img src="/src/assets/edit.svg" alt="Edit" class="edit-image"> 
+        <img src="/images/edit.svg" alt="Edit" class="edit-image"> 
 
       {/if}
 

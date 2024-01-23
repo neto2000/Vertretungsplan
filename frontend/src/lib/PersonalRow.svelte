@@ -7,7 +7,7 @@
 <div style="margin-top: 12px;">
   <div class="row-container">
     <!--span class="material-symbols-outlined">cancel</span-->
-    <img src="./src/assets/cancel.svg" alt="x"/>
+    <img src="/images/cancel.svg" alt="x"/>
     <p class="personal-row-text">{text}</p>
   </div>
 

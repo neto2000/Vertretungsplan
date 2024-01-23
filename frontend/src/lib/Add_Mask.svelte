@@ -36,7 +36,7 @@
     <div class="add-grid">
 
       <div class="icon-container">
-        <img src="./src/assets/clock.svg" alt="Clock" class="mask-icon">
+        <img src="/images/clock.svg" alt="Clock" class="mask-icon">
       </div>
 
       <div class="selector-container">
@@ -66,7 +66,7 @@
 
       <div class="icon-container">
 
-        <img src="./src/assets/person2.svg" alt="Teacher" class="mask-icon">
+        <img src="/images/person2.svg" alt="Teacher" class="mask-icon">
       </div>
 
       <div class="selector-container">
@@ -87,7 +87,7 @@
       
       <div class="icon-container">
 
-        <img src="./src/assets/book.svg" alt="Fach" class="mask-icon">
+        <img src="/images/book.svg" alt="Fach" class="mask-icon">
       </div>
 
       <div class="selector-container">
@@ -101,7 +101,7 @@
 
       <div class="icon-container">
 
-        <img src="./src/assets/door.svg" alt="Room" class="mask-icon">
+        <img src="/images/door.svg" alt="Room" class="mask-icon">
       </div>
 
       <div class="selector-container">

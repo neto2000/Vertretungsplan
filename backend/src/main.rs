@@ -25,7 +25,14 @@ async fn main() {
                 format!("Internal Error: {}", error)
             )
             })
-    );
+    )
+    .nest_service("/images", get_service(ServeDir::new("static/images"))
+            .handle_error(|error: std::io::Error| async move {
+            (
+                StatusCode::INTERNAL_SERVER_ERROR,
+                format!("Cant load images: {}", error)
+            )
+            }));
 
     let addr = SocketAddr::from(([127,0,0,1], 7000));
 

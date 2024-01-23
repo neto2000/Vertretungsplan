@@ -79,7 +79,7 @@
       {#if logged_in}
         <p class="user-name">neto2000</p>
         <button class="settings">
-          <img class="user-pic" src="./src/assets/account_circle.svg" alt="account" />
+          <img class="user-pic" src="/images/account_circle.svg" alt="account" />
         </button>
       {:else}
         <button class="login" on:click={() => change_page(Pages.Login)}>Log In</button>

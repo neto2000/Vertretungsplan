@@ -72,7 +72,7 @@
             {#if item.fach == "Frei"}
               <td class="table-cell">
                 <button class="add-container" on:click={mask}>
-                  <img class="add" src="./src/assets/add.svg" alt="Add">
+                  <img class="add" src="/images/add.svg" alt="Add">
                 </button>
               </td>
 
@@ -92,7 +92,7 @@
 
                   <button class="mini-edit-container" on:click={mask}>
                     <div class="edit-circle">                      
-                      <img class="edit-pic" src="./src/assets/edit.svg" alt="Edit">
+                      <img class="edit-pic" src="/images/edit.svg" alt="Edit">
                     </div>
 
                   </button>
@@ -120,7 +120,7 @@
           <td class="table-cell">
           
               <button class="add-container" on:click={mask}>
-                <img class="add" src="./src/assets/add.svg" alt="Add">
+                <img class="add" src="/images/add.svg" alt="Add">
               </button>
 
           </td>
