@@ -12,9 +12,17 @@ use std::net::SocketAddr;
 use tower_http::services::{ServeDir, ServeFile};
 
 
+mod db;
+
+
 #[tokio::main]
 async fn main() {
     println!("Hello, world!");
+
+    match db::db_test().await {
+        Ok(n) => n,
+        Err(e) => println!("db error: {}", e),
+    };
 
 
     let app = Router::new()
