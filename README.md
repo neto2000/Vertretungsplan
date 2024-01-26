@@ -60,6 +60,9 @@
    - [x] current Page in stores.js
    - [ ] use browsers back button (url hash)
 
+   - [ ] normal plan: get_rows with POST request to /get_rows
+   - [ ] put all ids of changed rows into changed store
+
    #### Dein Stundenplan
    - [x] normale Anzeige: wird nur so hoch, wie der längste Tag
    - [x] Bearbeitungsmodus: volle 10 Stunden
@@ -68,3 +71,9 @@
    - [x] Add Mask: Zwei Stunden selectors für Doppelstunden etc.
 
   ### Backend (rust)
+
+   - [ ] create sql schema
+   - [ ] write / read function to database
+   - [ ] implement db write / read into add_row and get_rows
+
+   - [ ] create change function with array of ids as input
