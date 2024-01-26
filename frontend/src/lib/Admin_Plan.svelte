@@ -1,7 +1,39 @@
 <script>
   import AdminTabelle from "./Admin_Tabelle.svelte";
 
+  import { admin_rows } from "../stores";
+
   let info_text = "";
+
+  let current_day = {date: "17.01.2024", week_day: "Montag"};
+ 
+
+  let rows = [];
+
+  admin_rows.subscribe((value) => {
+
+      rows = value;
+  })
+
+  
+  async function get_rows() {
+
+    const res = await fetch('/get_rows', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          date: current_day.date,
+        }),
+    })
+    
+    let db_rows = await res.json()
+
+    console.log(db_rows);
+  
+    admin_rows.set([db_rows]);
+  }
 
 </script>
 
@@ -12,8 +44,8 @@
 
     <div class="button-container">
       <button class="active">&lt;</button>
-      <button class="not-active">Montag, der 17.01.2024</button>
-      <button class="active">&gt;</button>
+      <button class="not-active">{current_day.week_day}, der {current_day.date}</button>
+      <button class="active" on:click={get_rows}>&gt;</button>
     </div>
 
     <div class="info-container">
@@ -25,7 +57,7 @@
 
     </div>
 
-    <AdminTabelle />
+    <AdminTabelle day={current_day} />
 
 
   </div>

@@ -3,6 +3,9 @@
   import { admin_rows } from "../stores";
 
 
+  export let day;
+
+
   let rows = [];
 
   admin_rows.subscribe((value) => {
@@ -16,10 +19,36 @@
   $: row_count = rows.length;
 
 
+  async function post_row() {
+
+    const res = await fetch('/add_row', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          id: 0,
+          day: day.date,
+          class: "0b",
+          hour: "5-6",
+          fach_old: "D",
+          fach_new: "D",
+          away: "Mustermann",
+          sub: "Horst",
+          room: "400",
+          typ: "Vertretung",
+          info: "-"
+        }),
+    })
+        
+
+  }
 
   function add_row() {
 
-    admin_rows.update((n) => [...n, ["0b", "5-6", "D", "Mustermann", "Horst", "D", "400", "Vertretung", "-"]])
+    admin_rows.update((n) => [...n, {id:0, class:"0b", hour:"5-6", fach_old:"D", away:"Mustermann", sub:"Horst", fach_new:"D", room:"400", typ:"Vertretung", info:"-"}])
+
+    post_row()
   }
 
   function delete_row(row) {

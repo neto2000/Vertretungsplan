@@ -1,12 +1,11 @@
 <script>
 
-  import { admin_rows } from "../stores";
+  import { admin_rows, changed_rows } from "../stores";
 
   export let id;
 
-  //export let row_list = ["7b", "5-6", "D", "Mustermann", "Horst", "D", "400", "Vertretung", "-"];
 
-  let row_list = [];
+  let row_list;
 
   admin_rows.subscribe((value) => {
 
@@ -14,15 +13,42 @@
   })
 
 
+  let changed = [];
+
+  changed_rows.subscribe((value) => {
+    changed = value;
+  })
+
+
+  function row_to_changed_list() {
+
+    console.log("changed")
+    
+
+  }
+
+
 </script>
 
 <tr class="row">
 
-  {#each row_list as item}
+  <td><input type="text" bind:value={row_list.class} on:input={row_to_changed_list} class="input-field" style="width: 90%;"></td>
 
-    <td><input type="text" bind:value={item} class="input-field" style="width: 90%;"></td>
+  <td><input type="text" bind:value={row_list.hour} on:input={row_to_changed_list} class="input-field" style="width: 90%;"></td>
 
-  {/each}
+  <td><input type="text" bind:value={row_list.fach_old} on:input={row_to_changed_list} class="input-field" style="width: 90%;"></td>
+
+  <td><input type="text" bind:value={row_list.away} on:input={row_to_changed_list} class="input-field" style="width: 90%;"></td>
+
+  <td><input type="text" bind:value={row_list.sub} on:input={row_to_changed_list} class="input-field" style="width: 90%;"></td>
+
+  <td><input type="text" bind:value={row_list.fach_new} on:input={row_to_changed_list} class="input-field" style="width: 90%;"></td>
+
+  <td><input type="text" bind:value={row_list.room} on:input={row_to_changed_list} class="input-field" style="width: 90%;"></td>
+
+  <td><input type="text" bind:value={row_list.typ} on:input={row_to_changed_list} class="input-field" style="width: 90%;"></td>
+
+  <td><input type="text" bind:value={row_list.info} on:input={row_to_changed_list} class="input-field" style="width: 90%;"></td>
 
 </tr>
 
@@ -40,9 +66,6 @@
 
   }
 
-  .row:hover  {
-
-
-  }
+  
 
 </style>
