@@ -76,4 +76,6 @@
    - [ ] write / read function to database
    - [ ] implement db write / read into add_row and get_rows
 
+   - [ ] delete row function
+
    - [ ] create change function with array of ids as input

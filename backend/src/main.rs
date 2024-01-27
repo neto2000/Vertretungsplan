@@ -1,4 +1,5 @@
 use axum::{
+    extract::{State},
     routing::{get, post, get_service},
     http::StatusCode,
     Json,
@@ -13,9 +14,15 @@ use tower_http::services::{ServeDir};
 
 use serde::{Deserialize, Serialize};
 
+use sqlx;
 
 mod db;
 
+
+#[derive(Clone)]
+struct AppState {
+    db: sqlx::Pool<sqlx::MySql> 
+}
 
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -48,10 +55,10 @@ struct Date {
 async fn main() {
     println!("Hello, world!");
 
-    match db::db_test().await {
-        Ok(n) => n,
-        Err(e) => println!("db error: {}", e),
-    };
+
+    let state = AppState{db: db::connect().await};
+
+
 
 
     let app = Router::new()
@@ -71,7 +78,8 @@ async fn main() {
             )
             }))
     .route("/add_row", post(add_row))
-    .route("/get_rows", post(get_rows));
+    .route("/get_rows", post(get_rows))
+    .with_state(state);
 
     let addr = SocketAddr::from(([127,0,0,1], 7000));
 
@@ -83,11 +91,16 @@ async fn main() {
 
 }
 
-async fn add_row(Json(payload): Json<Row>) -> StatusCode {
+
+
+
+async fn add_row(State(state): State<AppState>, Json(payload): Json<Row>) -> StatusCode {
 
     println!("recieved row");
 
     println!("{:?}", payload);
+
+    db::add_day(state.db).await;
 
     StatusCode::CREATED
 }
