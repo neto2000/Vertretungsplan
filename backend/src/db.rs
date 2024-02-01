@@ -2,6 +2,8 @@ use sqlx::{Row, Pool, MySql};
 
 use dotenv::dotenv;
 
+use crate::Date;
+
 pub async fn connect() -> Pool<MySql> {
 
     dotenv().ok();
@@ -28,9 +30,16 @@ pub async fn connect() -> Pool<MySql> {
 }
 
 
-pub async fn add_day(pool: Pool<MySql>) {
+pub async fn add_day(pool: &Pool<MySql>, day: &Date) {
+    
+    let query = "INSERT INTO day (datum, week_day) VALUES (?, ?)";
 
-
+    sqlx::query(query)
+        .bind(&day.date)
+        .bind(&day.week_day)
+        .execute(pool)
+        .await
+        .expect("day insertion failed");
 
 
 }

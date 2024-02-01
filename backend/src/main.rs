@@ -44,9 +44,10 @@ struct Row {
 }
 
 #[derive(Deserialize, Debug)]
-struct Date {
+pub struct Date {
 
-    date: String,
+    pub date: String,
+    pub week_day: String,
 }
 
 
@@ -100,7 +101,9 @@ async fn add_row(State(state): State<AppState>, Json(payload): Json<Row>) -> Sta
 
     println!("{:?}", payload);
 
-    db::add_day(state.db).await;
+    let day = Date {date: "31.12.2022".to_owned(), week_day: "Monday".to_owned()};
+
+    db::add_day(&state.db, &day).await;
 
     StatusCode::CREATED
 }
