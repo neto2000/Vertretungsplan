@@ -44,3 +44,8 @@ pub async fn add_day(pool: &Pool<MySql>, day: &Date) {
 
 }
 
+pub async fn add_row(pool: &Pool<MySql>) {
+
+
+}
+
