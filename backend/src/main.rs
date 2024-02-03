@@ -16,7 +16,7 @@ use serde::{Deserialize, Serialize};
 
 use sqlx;
 
-use chrono;
+use chrono::{self, Datelike};
 
 
 mod db;
@@ -89,6 +89,7 @@ async fn main() {
     .route("/add_row", post(add_row))
     .route("/get_rows", post(get_rows))
     .route("/get_day", post(get_day))
+    .route("/add_day", post(add_day))
     .with_state(state);
 
     let addr = SocketAddr::from(([127,0,0,1], 7000));
@@ -117,9 +118,50 @@ async fn add_row(State(state): State<AppState>, Json(payload): Json<Row>) -> Sta
     StatusCode::CREATED
 }
 
-async fn add_day(State(state): State<AppState>, Json(previous_day): Json<ID>) {
+async fn add_day(State(state): State<AppState>, Json(previous_day): Json<ID>) -> StatusCode{
 
-     
+    let date_str: String;
+
+    match db::get_day(&state.db, previous_day.id).await {
+        
+        Ok(date) => {
+
+            date_str = date.datum;     
+        },
+        Err(_e) => return StatusCode::INTERNAL_SERVER_ERROR,
+
+    }
+
+
+    let naive_date = chrono::NaiveDate::parse_from_str(&date_str, "%d.%m.%Y").unwrap();
+
+    let mut next_day = naive_date.checked_add_days(chrono::Days::new(1)).unwrap();
+
+
+
+    if next_day.weekday() == chrono::Weekday::Sat {
+
+        next_day = next_day.checked_add_days(chrono::Days::new(2)).unwrap(); 
+    }
+    else if next_day.weekday() == chrono::Weekday::Sun {
+
+        next_day = next_day.checked_add_days(chrono::Days::new(1)).unwrap(); 
+    }
+
+    let datum = next_day.format("%d.%m.%Y").to_string();
+
+    let weekday = next_day.format("%A").to_string();
+
+    let day = Date {
+        datum: datum.to_owned(),
+        week_day: weekday.to_owned(),
+    };
+
+    println!("add: {}, {}", day.datum, day.week_day);
+
+    db::add_day(&state.db, &day).await;
+
+    StatusCode::OK    
 }
 
 async fn get_day(State(state): State<AppState>, Json(day): Json<ID>) -> Result<Json<Date>, StatusCode>{
