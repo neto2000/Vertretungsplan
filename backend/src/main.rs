@@ -16,6 +16,9 @@ use serde::{Deserialize, Serialize};
 
 use sqlx;
 
+use chrono;
+
+
 mod db;
 
 
@@ -43,11 +46,16 @@ struct Row {
 
 }
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Serialize, Debug, sqlx::FromRow, Clone)]
 pub struct Date {
 
-    pub date: String,
+    pub datum: String,
     pub week_day: String,
+}
+
+#[derive(Deserialize, Debug)]
+struct ID {
+    id: i32,
 }
 
 
@@ -80,6 +88,7 @@ async fn main() {
             }))
     .route("/add_row", post(add_row))
     .route("/get_rows", post(get_rows))
+    .route("/get_day", post(get_day))
     .with_state(state);
 
     let addr = SocketAddr::from(([127,0,0,1], 7000));
@@ -101,17 +110,36 @@ async fn add_row(State(state): State<AppState>, Json(payload): Json<Row>) -> Sta
 
     println!("{:?}", payload);
 
-    let day = Date {date: "31.12.2022".to_owned(), week_day: "Monday".to_owned()};
+    let day = Date {datum: "31.12.2022".to_owned(), week_day: "Monday".to_owned()};
 
     db::add_day(&state.db, &day).await;
 
     StatusCode::CREATED
 }
 
+async fn add_day(State(state): State<AppState>, Json(previous_day): Json<ID>) {
+
+     
+}
+
+async fn get_day(State(state): State<AppState>, Json(day): Json<ID>) -> Result<Json<Date>, StatusCode>{
+
+   
+    println!("day was requested");
+
+    match db::get_day(&state.db, day.id).await {
+        
+        Ok(date) => return Ok(Json(date)),
+        Err(_e) => return Err(StatusCode::INTERNAL_SERVER_ERROR),
+
+    }
+
+}
+
 async fn get_rows(Json(payload): Json<Date>) -> Result<Json<Row>, StatusCode> {
 
 
-    if payload.date == "17.01.2024" {
+    if payload.datum == "17.01.2024" {
 
 
 

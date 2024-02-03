@@ -2,6 +2,7 @@ use sqlx::{Row, Pool, MySql};
 
 use dotenv::dotenv;
 
+
 use crate::Date;
 
 pub async fn connect() -> Pool<MySql> {
@@ -35,7 +36,7 @@ pub async fn add_day(pool: &Pool<MySql>, day: &Date) {
     let query = "INSERT INTO day (datum, week_day) VALUES (?, ?)";
 
     sqlx::query(query)
-        .bind(&day.date)
+        .bind(&day.datum)
         .bind(&day.week_day)
         .execute(pool)
         .await
@@ -46,6 +47,28 @@ pub async fn add_day(pool: &Pool<MySql>, day: &Date) {
 
 pub async fn add_row(pool: &Pool<MySql>) {
 
+    let query = "INSERT INTO plan (day, class, start_hour, end_hour, old_fach, new_fach, away, sub, room, typ, info) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        
+}
+
+pub async fn get_day(pool: &Pool<MySql>, id: i32) -> Result<Date, String>{
+
+
+    let query = "SELECT datum, week_day FROM day WHERE id = ?";
+
+    let days = sqlx::query_as::<_, Date>(query)
+        .bind(id)
+        .fetch_one(pool)
+        .await;
+
+    match days {
+        Ok(date) => return Ok(date),
+        Err(e) => {
+            println!("{}",e);
+            return Err("no exist".to_owned())
+        },
+    }
 
 }
 
