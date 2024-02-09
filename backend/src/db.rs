@@ -45,11 +45,25 @@ pub async fn add_day(pool: &Pool<MySql>, day: &Date) {
 
 }
 
-pub async fn add_row(pool: &Pool<MySql>) {
+pub async fn add_row(pool: &Pool<MySql>, row: &crate::Row) {
 
     let query = "INSERT INTO plan (day, class, start_hour, end_hour, old_fach, new_fach, away, sub, room, typ, info) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        
+    sqlx::query(query)
+        .bind(&row.day)
+        .bind(&row.class)
+        .bind(&row.start_hour)
+        .bind(&row.end_hour)
+        .bind(&row.old_fach)
+        .bind(&row.new_fach)
+        .bind(&row.away)
+        .bind(&row.sub)
+        .bind(&row.room)
+        .bind(&row.typ)
+        .bind(&row.info)
+        .execute(pool)
+        .await
+        .expect("plan insertion failed");
 }
 
 pub async fn get_day(pool: &Pool<MySql>, id: i32) -> Result<Date, String>{
@@ -69,6 +83,19 @@ pub async fn get_day(pool: &Pool<MySql>, id: i32) -> Result<Date, String>{
             return Err("no exist".to_owned())
         },
     }
+
+}
+
+pub async fn get_rows(pool: &Pool<MySql>, day_id: i32) -> Result<Vec<crate::Row>, sqlx::Error> {
+
+    let query = "SELECT * FROM plan WHERE day = ?";
+
+    let rows = sqlx::query_as::<_, crate::Row>(query)
+        .bind(day_id)
+        .fetch_all(pool)
+        .await;
+
+    return rows;
 
 }
 

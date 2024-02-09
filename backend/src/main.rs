@@ -28,20 +28,21 @@ struct AppState {
 }
 
 
-#[derive(Serialize, Deserialize, Debug)]
-struct Row {
+#[derive(Serialize, Deserialize, Debug, sqlx::FromRow, Clone)]
+pub struct Row {
 
-    id: i32,
-    day: String,
-    class: String,
-    hour: String,
-    fach_old: String,
-    fach_new: String,
-    away: String,
-    sub: String,
-    room: String,
-    typ: String,
-    info: String,
+    pub id: i32,
+    pub day: i32,
+    pub class: String,
+    pub start_hour: i32,
+    pub end_hour: i32,
+    pub old_fach: String,
+    pub new_fach: String,
+    pub away: String,
+    pub sub: String,
+    pub room: String,
+    pub typ: String,
+    pub info: String,
 
 
 }
@@ -111,9 +112,9 @@ async fn add_row(State(state): State<AppState>, Json(payload): Json<Row>) -> Sta
 
     println!("{:?}", payload);
 
-    let day = Date {datum: "31.12.2022".to_owned(), week_day: "Monday".to_owned()};
+    // let day = Date {datum: "31.12.2022".to_owned(), week_day: "Monday".to_owned()};
 
-    db::add_day(&state.db, &day).await;
+    db::add_row(&state.db, &payload).await;
 
     StatusCode::CREATED
 }
@@ -188,11 +189,12 @@ async fn get_rows(Json(payload): Json<Date>) -> Result<Json<Row>, StatusCode> {
         let row = Row {
         
             id: 2,
-            day: "17.01.2024".to_owned(),
+            day: 1,
             class: "11".to_owned(),
-            hour: "1-2".to_owned(),
-            fach_old: "F".to_owned(),
-            fach_new: "-".to_owned(),
+            start_hour: 1,
+            end_hour: 2,
+            old_fach: "F".to_owned(),
+            new_fach: "-".to_owned(),
             away: "Malek".to_owned(),
             sub: "-".to_owned(),
             room: "-".to_owned(),
