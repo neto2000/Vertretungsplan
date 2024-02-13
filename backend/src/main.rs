@@ -179,35 +179,35 @@ async fn get_day(State(state): State<AppState>, Json(day): Json<ID>) -> Result<J
 
 }
 
-async fn get_rows(Json(payload): Json<Date>) -> Result<Json<Row>, StatusCode> {
+async fn get_rows(State(state): State<AppState>, Json(day): Json<ID>) -> Result<Json<Vec<Row>>, StatusCode> {
+
+    let rows = db::get_rows(&state.db, day.id).await.expect("bad request");
+
+    println!("rows: {:?}", rows[0]);
 
 
-    if payload.datum == "17.01.2024" {
+    
+    let row = Row {
+    
+        id: 2,
+        day: 1,
+        class: "11".to_owned(),
+        start_hour: 1,
+        end_hour: 2,
+        old_fach: "F".to_owned(),
+        new_fach: "-".to_owned(),
+        away: "Malek".to_owned(),
+        sub: "-".to_owned(),
+        room: "-".to_owned(),
+        typ: "EVA".to_owned(),
+        info: "-".to_owned(),
+
+    };
+    
+    return Ok(Json(rows)) 
 
 
 
-        let row = Row {
-        
-            id: 2,
-            day: 1,
-            class: "11".to_owned(),
-            start_hour: 1,
-            end_hour: 2,
-            old_fach: "F".to_owned(),
-            new_fach: "-".to_owned(),
-            away: "Malek".to_owned(),
-            sub: "-".to_owned(),
-            room: "-".to_owned(),
-            typ: "EVA".to_owned(),
-            info: "-".to_owned(),
-
-        };
-        
-        return Ok(Json(row)) 
-    }
-
-
-
-    return Err(StatusCode::BAD_REQUEST);
+    //return Err(StatusCode::BAD_REQUEST);
 
 }
