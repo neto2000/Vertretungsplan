@@ -36,46 +36,28 @@
 
    #### Personal
 
-   - [x] Heute/Morgen vllt. neben Content statt drüber
-   - [x] Icons on the left side of the content line
-   - [x] Stift symbol unten rechts onclick: Text daneben mit "Studenplan bearbeiten"
-   - [ ] Choose Icons for EVA, Raumänderung, Vertretung, etc.
+     - [ ] Choose Icons for EVA, Raumänderung, Vertretung, etc.
 
    #### Dein Stundenplan
 
-   - [x] Stundenplan wird normal angezeigt
-   - [x] unten rechts Stift um in Bearbeitungsmodus zu wechseln
-   - [x] in Bearbeitungsmodus bei jedem Stundenslot ein Plus um Hinzufügen overlay zu öffnen
-   - [x] Hinzufügen overlay (Fach, Lehrer, Kürzel, Raum)
-
+   
   ### Frontend (svelte)
 
-   - [x] implement VP design
    - [ ] improve all gaps!
-   - [x] css: color variables
    - [ ] implement Personal design
    - [ ] implement Stundenplan design
-   - [x] click cursor on buttons
+   - [ ] click cursor on buttons
    - [ ] button animations
-   - [x] current Page in stores.js
    - [ ] use browsers back button (url hash)
 
    - [ ] normal plan: get_rows with POST request to /get_rows
    - [ ] put all ids of changed rows into changed store
 
    #### Dein Stundenplan
-   - [x] normale Anzeige: wird nur so hoch, wie der längste Tag
-   - [x] Bearbeitungsmodus: volle 10 Stunden
-   - [x] Bearbeitungsmodus: exsisting Cells: edit button on hover
-   - [x] Add mask
-   - [x] Add Mask: Zwei Stunden selectors für Doppelstunden etc.
-
+  
   ### Backend (rust)
 
-   - [ ] create sql schema
-   - [ ] write / read function to database
-   - [ ] implement db write / read into add_row and get_rows
-
+   
    - [ ] delete row function
 
    - [ ] create change function with array of ids as input
