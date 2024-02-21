@@ -60,4 +60,4 @@
    
    - [ ] delete row function
 
-   - [ ] create change function with array of ids as input
+   - [ ] overwrite exsiting row in changed if same id
