@@ -1,4 +1,4 @@
-use sqlx::{Row, Pool, MySql};
+use sqlx::{mysql::MySqlQueryResult, MySql, Pool, Row};
 
 use dotenv::dotenv;
 
@@ -97,5 +97,28 @@ pub async fn get_rows(pool: &Pool<MySql>, day_id: i32) -> Result<Vec<crate::Row>
 
     return rows;
 
+}
+
+pub async fn update_row(pool: &Pool<MySql>, new_row: crate::Row){
+
+    let query = "UPDATE plan SET day = ?, class = ?, start_hour = ?, end_hour = ? , old_fach = ? , new_fach = ? , away = ? , sub = ?, room = ?, typ = ?, info = ? WHERE id = ?";
+
+
+    sqlx::query(query)
+        .bind(&new_row.day)
+        .bind(&new_row.class)
+        .bind(&new_row.start_hour)
+        .bind(&new_row.end_hour)
+        .bind(&new_row.old_fach)
+        .bind(&new_row.new_fach)
+        .bind(&new_row.away)
+        .bind(&new_row.sub)
+        .bind(&new_row.room)
+        .bind(&new_row.typ)
+        .bind(&new_row.info)
+        .bind(&new_row.id)
+        .execute(pool)
+        .await
+    .expect("cant update");
 }
 

@@ -91,6 +91,7 @@ async fn main() {
     .route("/get_rows", post(get_rows))
     .route("/get_day", post(get_day))
     .route("/add_day", post(add_day))
+    .route("/update", post(update))
     .with_state(state);
 
     let addr = SocketAddr::from(([127,0,0,1], 7000));
@@ -209,5 +210,13 @@ async fn get_rows(State(state): State<AppState>, Json(day): Json<ID>) -> Result<
 
 
     //return Err(StatusCode::BAD_REQUEST);
+
+}
+
+
+async fn update(State(state): State<AppState>, Json(new_row): Json<Row>) {
+
+    db::update_row(&state.db, new_row);
+
 
 }
