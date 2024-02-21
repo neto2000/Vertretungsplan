@@ -1,9 +1,9 @@
 <script>
   import AdminPlanRow from "./Admin_Plan_Row.svelte";
-  import { admin_rows } from "../stores";
-
+  import { admin_rows, changed_rows } from "../stores";
 
   export let day;
+
 
 
   let rows = [];
@@ -11,6 +11,13 @@
   admin_rows.subscribe((value) => {
 
     rows = value;
+  })
+
+  let changed = [];
+
+  changed_rows.subscribe((value) => {
+
+    changed = value;
   })
 
 
@@ -50,6 +57,18 @@
     admin_rows.update((n) => [...n, {id:0, class:"0b", hour:"5-6", fach_old:"D", away:"Mustermann", sub:"Horst", fach_new:"D", room:"400", typ:"Vertretung", info:"-"}])
 
     post_row()
+  }
+
+  async function update_row() {
+
+    // send whole changed list!
+    const res = await fetch('/update', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(changed)
+    })
   }
 
   function delete_row(row) {
@@ -104,6 +123,7 @@
   
   <div class="add-container">
     <button class="add-button" on:click={() => {add_row()}}>Zeile hinzufügen</button>
+    <button class="add-button" on:click={() => {update_row()}}>Update</button>
   </div>
 </div>
 

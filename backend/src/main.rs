@@ -214,9 +214,10 @@ async fn get_rows(State(state): State<AppState>, Json(day): Json<ID>) -> Result<
 }
 
 
-async fn update(State(state): State<AppState>, Json(new_row): Json<Row>) {
+async fn update(State(state): State<AppState>, Json(new_rows): Json<Vec<Row>>) {
 
-    db::update_row(&state.db, new_row);
+    for new_row in new_rows {  
 
-
+        db::update_row(&state.db, new_row).await;
+    }
 }

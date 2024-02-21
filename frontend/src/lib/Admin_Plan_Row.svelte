@@ -24,7 +24,7 @@
 
     console.log("changed")
     
-
+    changed_rows.set([...changed, row_list]);
   }
 
 
@@ -36,13 +36,13 @@
 
   <td><input type="text" bind:value={row_list.hour} on:input={row_to_changed_list} class="input-field" style="width: 90%;"></td>
 
-  <td><input type="text" bind:value={row_list.fach_old} on:input={row_to_changed_list} class="input-field" style="width: 90%;"></td>
+  <td><input type="text" bind:value={row_list.old_fach} on:input={row_to_changed_list} class="input-field" style="width: 90%;"></td>
 
   <td><input type="text" bind:value={row_list.away} on:input={row_to_changed_list} class="input-field" style="width: 90%;"></td>
 
   <td><input type="text" bind:value={row_list.sub} on:input={row_to_changed_list} class="input-field" style="width: 90%;"></td>
 
-  <td><input type="text" bind:value={row_list.fach_new} on:input={row_to_changed_list} class="input-field" style="width: 90%;"></td>
+  <td><input type="text" bind:value={row_list.new_fach} on:input={row_to_changed_list} class="input-field" style="width: 90%;"></td>
 
   <td><input type="text" bind:value={row_list.room} on:input={row_to_changed_list} class="input-field" style="width: 90%;"></td>
 

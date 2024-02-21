@@ -24,15 +24,16 @@
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          date: current_day.date,
+          id: 1,
         }),
     })
     
     let db_rows = await res.json()
 
-    console.log(db_rows);
+    console.log(db_rows[0].id);
+
   
-    admin_rows.set([db_rows]);
+    admin_rows.set(db_rows);
   }
 
 </script>
