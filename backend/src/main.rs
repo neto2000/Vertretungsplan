@@ -92,6 +92,7 @@ async fn main() {
     .route("/get_day", post(get_day))
     .route("/add_day", post(add_day))
     .route("/update", post(update))
+    .route("/remove", post(remove))
     .with_state(state);
 
     let addr = SocketAddr::from(([127,0,0,1], 7000));
@@ -220,4 +221,10 @@ async fn update(State(state): State<AppState>, Json(new_rows): Json<Vec<Row>>) {
 
         db::update_row(&state.db, new_row).await;
     }
+}
+
+async fn remove(State(state): State<AppState>, Json(row): Json<ID>) {
+
+    db::remove_row(&state.db, row.id).await;
+
 }

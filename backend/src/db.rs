@@ -122,3 +122,14 @@ pub async fn update_row(pool: &Pool<MySql>, new_row: crate::Row){
     .expect("cant update");
 }
 
+pub async fn remove_row(pool: &Pool<MySql>, id: i32) {
+
+    let query = "DELETE FROM plan WHERE id = ?";
+
+    sqlx::query(query)
+        .bind(id)
+        .execute(pool)
+        .await
+        .expect("cant delete");
+}
+
