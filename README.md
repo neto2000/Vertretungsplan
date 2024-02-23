@@ -50,7 +50,7 @@
    - [ ] button animations
    - [x] use browsers back button (url hash)
 
-   - [ ] normal plan: get_rows with POST request to /get_rows
+   - [x] normal plan: get_rows with POST request to /get_rows
    - [ ] put all ids of changed rows into changed store
 
    #### Dein Stundenplan

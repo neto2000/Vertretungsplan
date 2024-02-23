@@ -1,7 +1,34 @@
 <script>
   import TableRow from "./TableRow.svelte";
 
+  import { onMount } from 'svelte';
+
   let test_rows = 15
+
+  let db_rows = [];
+  
+  onMount(async () => {
+    await get_rows();
+  });
+
+  async function get_rows() {
+
+    const res = await fetch('/get_rows', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          id: 1,
+        }),
+    })
+    
+    db_rows = await res.json()
+
+    console.log(db_rows[0].id);
+
+  
+  }
 </script>
 
 
@@ -19,11 +46,12 @@
       <th>Info</th>
     </tr>
 
-    {#each Array(test_rows) as _, i}
-      <TableRow /> 
+    {#each db_rows as row}
+      <TableRow row={row} /> 
     {/each}
 
   </table>
+
 </div>
 
 
