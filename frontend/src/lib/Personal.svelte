@@ -45,8 +45,10 @@
     </div>
 
     <div class="edit-container">
-      <button class="edit-button" on:click={open_stundenplan}>
+      <button class="edit-button">
+        <a href="/#stundenplan">
         <img src="/images/edit.svg" alt="Edit" class="edit-image"> 
+        </a>
       </button>
 
     </div>

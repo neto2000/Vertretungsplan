@@ -13,16 +13,36 @@
 
     let current;
 
+    let page = "main";
+
     current_page.subscribe((value) => {
         current = value;
     })
 
 
+    const routing_map = {
+        '#admin': "admin",
+        '#login': "login",
+        '#signup': "signup",
+        '#stundenplan': "stundenplan",
+        '': "main",
+    };
+
+
+    function routeChange() {
+        page = routing_map[location.hash] || "not-found";
+
+        console.log("hash change");
+    }
+
+
 </script>
+
+<svelte:window on:hashchange={routeChange} />
 
 <main>
 
-    {#if current == Pages.Main}
+    {#if page == "main"}
          
         <Header  />
         
@@ -32,7 +52,7 @@
             <Plan />
 
         </div>
-    {:else if  current == Pages.Stundenplan}
+    {:else if page == "stundenplan"}
 
         <Header  />
 
@@ -41,15 +61,15 @@
             <Stundenplan  />
 
         </div>
-    {:else if current == Pages.Login}
+    {:else if page == "login"}
 
         <Login />
 
-    {:else if current == Pages.SignUp}
+    {:else if page == "signup"}
         
         <SignUp />
 
-    {:else if current == Pages.Admin}
+    {:else if page == "admin"}
 
         <Header  />
 
@@ -60,8 +80,7 @@
         </div>
     {/if}
 
-
-
+    
     
 </main>
 

@@ -60,19 +60,19 @@
   <div class="header-container">
 
     <div class="link-container">
-      <button class="header-link" on:click={() => change_page(Pages.Stundenplan)}>Stundenplan</button>
+      <button class="header-link"><a href="/#stundenplan" class="header-a">Stundenplan</a></button>
       <button class="header-link">Aushänge</button>
 
       {#if l_is_admin}
          
-        <button class="header-link" on:click={() => change_page(Pages.Admin)}>Admin</button>
+        <button class="header-link"><a href="/#admin" class="header-a">Admin</a></button>
       {/if}
 
-      <button class="header-link">Über uns</button>
+      <button class="header-link"><a href="/#login" class="header-a">Über uns</a></button>
     </div>
 
     <div class="logo-container">
-      <button class="logo" on:click={() => change_page(Pages.Main)}>VP</button>
+      <button class="logo"><a href="/" class="header-a">VP</a></button>
     </div>
 
     <div class="account">
@@ -82,8 +82,8 @@
           <img class="user-pic" src="/images/account_circle.svg" alt="account" />
         </button>
       {:else}
-        <button class="login" on:click={() => change_page(Pages.Login)}>Log In</button>
-        <button class="signup" on:click={() => change_page(Pages.SignUp)}>Sign Up</button>
+        <button class="login"><a href="/#login" class="header-a">Log In</a></button>
+        <button class="signup"><a href="/#signup" class="header-a" style="color: white;">Sign Up</a></button>
       {/if} 
     </div>
 
@@ -162,6 +162,7 @@
 
     background-color: white;
 
+    
     border: none;
 
     font-family: 'Rubik', sans-serif;
@@ -175,6 +176,13 @@
   .header-link:hover {
 
     opacity: 60%;
+
+  }
+
+  .header-a {
+    color: black;
+
+    text-decoration: none;
 
   }
 

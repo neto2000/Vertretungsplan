@@ -48,7 +48,7 @@
    - [ ] implement Stundenplan design
    - [ ] click cursor on buttons
    - [ ] button animations
-   - [ ] use browsers back button (url hash)
+   - [x] use browsers back button (url hash)
 
    - [ ] normal plan: get_rows with POST request to /get_rows
    - [ ] put all ids of changed rows into changed store

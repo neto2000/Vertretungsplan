@@ -20,8 +20,10 @@
 
     <div style="width: 100%;">
 
-      <button class="back" on:click={() => {change_page(Pages.Main)}}>
+      <button class="back">
+        <a href="/">
         <img class="back-icon" src="/images/back-arrow.svg" alt="back">
+        </a>
       </button>
 
     </div>
