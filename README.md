@@ -36,7 +36,7 @@
 
    #### Personal
 
-     - [ ] Choose Icons for EVA, Raumänderung, Vertretung, etc.
+    - [ ] Choose Icons for EVA, Raumänderung, Vertretung, etc.
 
    #### Dein Stundenplan
 

@@ -61,6 +61,8 @@
 
   async function update_row() {
 
+    console.log(changed)
+
     // send whole changed list!
     const res = await fetch('/update', {
       method: 'POST',
@@ -71,8 +73,18 @@
     })
   }
 
-  function delete_row(row) {
+  async function delete_row(row) {
 
+    console.log("row id: " + rows[row].id)
+    
+
+    const res = await fetch('/remove', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({id: rows[row].id}),
+    })
     rows.splice(row,1)
 
     console.log(rows)
