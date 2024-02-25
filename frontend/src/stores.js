@@ -17,7 +17,7 @@ export const Pages = {
 export const current_page = writable(Pages.Main);
 
 
-export const admin_rows = writable([{id:0, class:"7b", hour:"5-6", fach_old:"D", away:"Mustermann", sub:"Horst", fach_new:"D", room:"400", typ:"Vertretung", info:"-"}]);
+export const admin_rows = writable([{id:0, class:"7b", start_hour:5, end_hour: 6, old_fach:"D", away:"Mustermann", sub:"Horst", new_fach:"D", room:"400", typ:"Vertretung", info:"-"}]);
 
 export const changed_rows = writable([]);
 

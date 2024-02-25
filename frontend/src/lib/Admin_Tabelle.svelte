@@ -1,6 +1,7 @@
 <script>
   import AdminPlanRow from "./Admin_Plan_Row.svelte";
   import { admin_rows, changed_rows } from "../stores";
+  import { onMount } from "svelte";
 
   export let day;
 
@@ -20,10 +21,39 @@
     changed = value;
   })
 
+  
+
+
+  onMount(async () => {
+    await get_rows();
+  });
+
+
+
 
   let row_count;
 
   $: row_count = rows.length;
+
+  async function get_rows() {
+
+    const res = await fetch('/get_rows', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          id: 1,
+        }),
+    })
+    
+    let db_rows = await res.json()
+
+    console.log(db_rows[0].id);
+
+  
+    admin_rows.set(db_rows);
+  }
 
 
   async function post_row() {
@@ -49,14 +79,16 @@
         }),
     })
         
-
+    
   }
 
-  function add_row() {
+  async function add_row() {
 
-    admin_rows.update((n) => [...n, {id:0, class:"0b", hour:"5-6", fach_old:"D", away:"Mustermann", sub:"Horst", fach_new:"D", room:"400", typ:"Vertretung", info:"-"}])
+    admin_rows.update((n) => [...n, {id:0, day: 1, class:"0b", start_hour:5, end_hour:6, old_fach:"D", away:"Mustermann",sub:"Horst", new_fach:"D", room:"400", typ:"Vertretung", info:"-"}])
 
-    post_row()
+    await post_row()
+
+    get_rows()
   }
 
   async function update_row() {

@@ -16,25 +16,7 @@
   })
 
   
-  async function get_rows() {
-
-    const res = await fetch('/get_rows', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          id: 1,
-        }),
-    })
-    
-    let db_rows = await res.json()
-
-    console.log(db_rows[0].id);
-
   
-    admin_rows.set(db_rows);
-  }
 
 </script>
 
@@ -46,7 +28,7 @@
     <div class="button-container">
       <button class="active">&lt;</button>
       <button class="not-active">{current_day.week_day}, der {current_day.date}</button>
-      <button class="active" on:click={get_rows}>&gt;</button>
+      <button class="active">&gt;</button>
     </div>
 
     <div class="info-container">

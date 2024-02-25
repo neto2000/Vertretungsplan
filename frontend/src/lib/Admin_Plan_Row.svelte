@@ -22,6 +22,14 @@
 
   function row_to_changed_list() {
 
+    for (let i = 0; i < changed.length; i++) {
+
+      if (changed[i].id == row_list.id) {
+
+        return; 
+      }
+    }
+
     console.log("changed")
     
     changed_rows.set([...changed, row_list]);
@@ -34,7 +42,7 @@
 
   <td><input type="text" bind:value={row_list.class} on:input={row_to_changed_list} class="input-field" style="width: 90%;"></td>
 
-  <td><input type="text" bind:value={row_list.hour} on:input={row_to_changed_list} class="input-field" style="width: 90%;"></td>
+  <td><input type="number" bind:value={row_list.start_hour} on:input={row_to_changed_list} class="input-field" style="width: 90%;"></td>
 
   <td><input type="text" bind:value={row_list.old_fach} on:input={row_to_changed_list} class="input-field" style="width: 90%;"></td>
 
