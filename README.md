@@ -36,7 +36,7 @@
 
    #### Personal
 
-    - [ ] Choose Icons for EVA, Raumänderung, Vertretung, etc.
+   - [ ] Choose Icons for EVA, Raumänderung, Vertretung, etc.
 
    #### Dein Stundenplan
 
@@ -51,13 +51,19 @@
    - [x] use browsers back button (url hash)
 
    - [x] normal plan: get_rows with POST request to /get_rows
-   - [ ] put all ids of changed rows into changed store
 
-   #### Dein Stundenplan
+   - [ ] day logic
+
+   - [ ] sort options (class, fach, etc.)
+
   
   ### Backend (rust)
 
    
-   - [ ] delete row function
+   - [x] delete row function
 
-   - [ ] overwrite exsiting row in changed if same id
+   - [ ] login backend
+
+   - [ ] admin request only for admin account
+
+

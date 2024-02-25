@@ -42,7 +42,11 @@
 
   <td><input type="text" bind:value={row_list.class} on:input={row_to_changed_list} class="input-field" style="width: 90%;"></td>
 
-  <td><input type="number" bind:value={row_list.start_hour} on:input={row_to_changed_list} class="input-field" style="width: 90%;"></td>
+  <td style='white-space: nowrap'>
+    <input type="number" bind:value={row_list.start_hour} on:input={row_to_changed_list} class="input-field" style="width: 3vw; display: inline-block;">
+
+    <input type="number" bind:value={row_list.end_hour} on:input={row_to_changed_list} class="input-field" style="width: 3vw; display: inline-block;">
+  </td>
 
   <td><input type="text" bind:value={row_list.old_fach} on:input={row_to_changed_list} class="input-field" style="width: 90%;"></td>
 

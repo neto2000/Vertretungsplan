@@ -103,6 +103,8 @@
       },
       body: JSON.stringify(changed)
     })
+
+    changed_rows.set([]);
   }
 
   async function delete_row(row) {
