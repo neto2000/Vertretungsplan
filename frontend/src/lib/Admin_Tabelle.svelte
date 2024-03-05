@@ -3,7 +3,7 @@
   import { admin_rows, changed_rows } from "../stores";
   import { onMount } from "svelte";
 
-  export let day;
+  export let day_id;
 
 
 
@@ -25,17 +25,17 @@
 
 
   onMount(async () => {
-    await get_rows();
+    await get_rows(day_id);
   });
 
-
+  $: get_rows(day_id)
 
 
   let row_count;
 
   $: row_count = rows.length;
 
-  async function get_rows() {
+  async function get_rows(day_id) {
 
     const res = await fetch('/get_rows', {
         method: 'POST',
@@ -43,13 +43,13 @@
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          id: 1,
+          id: day_id,
         }),
     })
     
     let db_rows = await res.json()
 
-    console.log(db_rows[0].id);
+    //console.log(db_rows[0].id);
 
   
     admin_rows.set(db_rows);
@@ -65,7 +65,7 @@
         },
         body: JSON.stringify({
           id: 0,
-          day: 1,
+          day: day_id,
           class: "0b",
           start_hour: 5,
           end_hour: 6,
@@ -88,7 +88,7 @@
 
     await post_row()
 
-    get_rows()
+    get_rows(day_id)
   }
 
   async function update_row() {

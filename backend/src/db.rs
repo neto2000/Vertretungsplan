@@ -4,6 +4,7 @@ use dotenv::dotenv;
 
 
 use crate::Date;
+use crate::ID;
 
 pub async fn connect() -> Pool<MySql> {
 
@@ -43,6 +44,18 @@ pub async fn add_day(pool: &Pool<MySql>, day: &Date) {
         .expect("day insertion failed");
 
 
+}
+
+pub async fn get_day_from_string(pool: &Pool<MySql>, string: &str) -> Result<ID, sqlx::Error> {
+    
+    let query = "SELECT id FROM day WHERE datum = ?";
+
+    let day_id = sqlx::query_as::<_, ID>(query)
+        .bind(string)
+        .fetch_one(pool)
+        .await?;
+
+    return Ok(day_id)
 }
 
 pub async fn add_row(pool: &Pool<MySql>, row: &crate::Row) {

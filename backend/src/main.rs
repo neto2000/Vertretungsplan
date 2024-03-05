@@ -54,7 +54,7 @@ pub struct Date {
     pub week_day: String,
 }
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Serialize , Debug, sqlx::FromRow, Clone)]
 struct ID {
     id: i32,
 }
@@ -93,6 +93,7 @@ async fn main() {
     .route("/add_day", post(add_day))
     .route("/update", post(update))
     .route("/remove", post(remove))
+    .route("/current_day", get(add_current_day))
     .with_state(state);
 
     let addr = SocketAddr::from(([127,0,0,1], 7000));
@@ -167,6 +168,43 @@ async fn add_day(State(state): State<AppState>, Json(previous_day): Json<ID>) ->
     StatusCode::OK    
 }
 
+async fn add_current_day(State(state): State<AppState>) -> Result<Json<ID>, StatusCode> {
+
+    let now = chrono::Local::now();
+
+    let date_string: String = now.format("%d.%m.%Y").to_string();
+
+    match db::get_day_from_string(&state.db, &date_string).await {
+        Ok(id) => return Ok(Json(id)),
+        Err(e) => {
+
+            match e {
+                
+                sqlx::Error::RowNotFound => {
+
+                    let weekday: String = now.format("%A").to_string();
+
+                    let day = Date {
+                        datum: date_string.clone(),
+                        week_day: weekday,
+                    };
+
+                    db::add_day(&state.db, &day).await;
+                
+                    match db::get_day_from_string(&state.db, &date_string).await {
+
+                        Ok(id) => return Ok(Json(id)),
+                        Err(_e) => return Err(StatusCode::INTERNAL_SERVER_ERROR),
+                    }
+                },
+                _ => return Err(StatusCode::INTERNAL_SERVER_ERROR)
+            }
+                       
+        },
+    };
+
+}
+
 async fn get_day(State(state): State<AppState>, Json(day): Json<ID>) -> Result<Json<Date>, StatusCode>{
 
    
@@ -185,8 +223,7 @@ async fn get_rows(State(state): State<AppState>, Json(day): Json<ID>) -> Result<
 
     let rows = db::get_rows(&state.db, day.id).await.expect("bad request");
 
-    println!("rows: {:?}", rows[0]);
-
+    println!("id: {}", day.id);
 
     
     let row = Row {
@@ -198,7 +235,7 @@ async fn get_rows(State(state): State<AppState>, Json(day): Json<ID>) -> Result<
         end_hour: 2,
         old_fach: "F".to_owned(),
         new_fach: "-".to_owned(),
-        away: "Malek".to_owned(),
+        away: "Muster".to_owned(),
         sub: "-".to_owned(),
         room: "-".to_owned(),
         typ: "EVA".to_owned(),

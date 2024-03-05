@@ -1,12 +1,16 @@
 <script>
   import AdminTabelle from "./Admin_Tabelle.svelte";
 
+
   import { admin_rows } from "../stores";
+  import { onMount } from "svelte";
 
   let info_text = "";
 
-  let current_day = {date: "17.01.2024", week_day: "Montag"};
- 
+  let current_day = {id: 1, date: "17.01.2024", week_day: "Montag"};
+
+
+
 
   let rows = [];
 
@@ -14,8 +18,90 @@
 
       rows = value;
   })
-
   
+
+  onMount(async () => {
+
+    await get_current_day();
+  });
+
+
+  async function get_current_day() {
+
+    const res = await fetch('/current_day', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+    })
+    
+    let json_res = await res.json();
+
+    console.log("current_day_id: " + json_res.id)
+
+    current_day.id = json_res.id;
+
+    const res2 = await fetch('/get_day', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      body: JSON.stringify({
+          id: current_day.id,
+        }),
+    })
+
+    let json_res2 = await res2.json();
+
+    current_day.date = json_res2.datum;
+    current_day.week_day = json_res2.week_day;
+  }
+
+  async function next_day() {
+
+    if (current_day.id == 1) {
+      return
+    }
+    
+
+    current_day.id = current_day.id - 1;
+
+    const res2 = await fetch('/get_day', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      body: JSON.stringify({
+          id: current_day.id,
+        }),
+    })
+
+    let json_res2 = await res2.json();
+
+    current_day.date = json_res2.datum;
+    current_day.week_day = json_res2.week_day;
+  }
+
+  async function previous_day() {
+
+    current_day.id = current_day.id + 1;
+
+    const res2 = await fetch('/get_day', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      body: JSON.stringify({
+          id: current_day.id,
+        }),
+    })
+
+    let json_res2 = await res2.json();
+
+    current_day.date = json_res2.datum;
+    current_day.week_day = json_res2.week_day;
+
+  }
   
 
 </script>
@@ -26,9 +112,9 @@
     <h2 class="plan-heading">Vertretungsplan</h2>
 
     <div class="button-container">
-      <button class="active">&lt;</button>
-      <button class="not-active">{current_day.week_day}, der {current_day.date}</button>
-      <button class="active">&gt;</button>
+      <button class="active" on:click={previous_day}>&lt;</button>
+      <button class="not-active" on:click={get_current_day}>{current_day.week_day}, der {current_day.date}</button>
+      <button class="active" on:click={next_day}>&gt;</button>
     </div>
 
     <div class="info-container">
@@ -40,7 +126,7 @@
 
     </div>
 
-    <AdminTabelle day={current_day} />
+    <AdminTabelle day_id={current_day.id} />
 
 
   </div>
