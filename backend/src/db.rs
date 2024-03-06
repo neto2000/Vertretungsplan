@@ -79,7 +79,7 @@ pub async fn add_row(pool: &Pool<MySql>, row: &crate::Row) {
         .expect("plan insertion failed");
 }
 
-pub async fn get_day(pool: &Pool<MySql>, id: i32) -> Result<Date, String>{
+pub async fn get_day(pool: &Pool<MySql>, id: i32) -> Result<Date, sqlx::Error>{
 
 
     let query = "SELECT datum, week_day FROM day WHERE id = ?";
@@ -89,14 +89,7 @@ pub async fn get_day(pool: &Pool<MySql>, id: i32) -> Result<Date, String>{
         .fetch_one(pool)
         .await;
 
-    match days {
-        Ok(date) => return Ok(date),
-        Err(e) => {
-            println!("{}",e);
-            return Err("no exist".to_owned())
-        },
-    }
-
+    return days 
 }
 
 pub async fn get_rows(pool: &Pool<MySql>, day_id: i32) -> Result<Vec<crate::Row>, sqlx::Error> {

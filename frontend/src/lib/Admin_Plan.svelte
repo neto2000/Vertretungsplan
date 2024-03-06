@@ -57,7 +57,7 @@
     current_day.week_day = json_res2.week_day;
   }
 
-  async function next_day() {
+  async function previous_day() {
 
     if (current_day.id == 1) {
       return
@@ -82,9 +82,11 @@
     current_day.week_day = json_res2.week_day;
   }
 
-  async function previous_day() {
+  async function next_day() {
 
     current_day.id = current_day.id + 1;
+
+
 
     const res2 = await fetch('/get_day', {
         method: 'POST',
@@ -96,10 +98,42 @@
         }),
     })
 
-    let json_res2 = await res2.json();
+    if(res2.status == 500) 
+    {
+      const res3 = await fetch('/add_day', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          id: current_day.id - 1,
+        }),
+      })
+      
+      const res4 = await fetch('/get_day', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      body: JSON.stringify({
+          id: current_day.id,
+        }),
+      })
 
-    current_day.date = json_res2.datum;
-    current_day.week_day = json_res2.week_day;
+      
+      let json_res4 = await res4.json();
+
+      current_day.date = json_res4.datum;
+      current_day.week_day = json_res4.week_day;
+
+
+    }
+    else if (res2.status == 200) {
+      let json_res2 = await res2.json();
+
+      current_day.date = json_res2.datum;
+      current_day.week_day = json_res2.week_day;
+    }
 
   }
   

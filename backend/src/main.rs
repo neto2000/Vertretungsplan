@@ -168,6 +168,8 @@ async fn add_day(State(state): State<AppState>, Json(previous_day): Json<ID>) ->
     StatusCode::OK    
 }
 
+
+
 async fn add_current_day(State(state): State<AppState>) -> Result<Json<ID>, StatusCode> {
 
     let now = chrono::Local::now();
@@ -204,6 +206,45 @@ async fn add_current_day(State(state): State<AppState>) -> Result<Json<ID>, Stat
     };
 
 }
+// async fn get_next_day(State(state): State<AppState>, Json(previous_day): Json<ID>) -> Result<Json<Date>, StatusCode> {
+//
+//     match db::get_day(&state.db, previous_day.id).await {
+//         
+//         Ok(date) => return Ok(Json(date)),
+//         Err(e) => {
+//
+//             match e {
+//         
+//                 sqlx::Error::RowNotFound => {
+//
+//                     let date = chrono::Local::now().checked_add_days(chrono::Days::new(1)).unwrap();
+//
+//                     let date_string = date.format("%d.%m.%Y").to_string();
+//
+//                     let weekday: String = date.format("%A").to_string();
+//
+//                     let day = Date {
+//                         datum: date_string.clone(),
+//                         week_day: weekday,
+//                     };
+//
+//                     db::add_day(&state.db, &day).await;
+//                 
+//                     match db::get_day(&state.db, previous_day.id).await {
+//
+//                         Ok(id) => return Ok(Json(id)),
+//                         Err(_e) => return Err(StatusCode::INTERNAL_SERVER_ERROR),
+//                     }
+//                 },
+//                 _ => return Err(StatusCode::INTERNAL_SERVER_ERROR)
+//             }
+//         },
+//
+//     }
+//
+//
+// }
+
 
 async fn get_day(State(state): State<AppState>, Json(day): Json<ID>) -> Result<Json<Date>, StatusCode>{
 
@@ -213,11 +254,22 @@ async fn get_day(State(state): State<AppState>, Json(day): Json<ID>) -> Result<J
     match db::get_day(&state.db, day.id).await {
         
         Ok(date) => return Ok(Json(date)),
-        Err(_e) => return Err(StatusCode::INTERNAL_SERVER_ERROR),
+        Err(e) => {
+
+            match e {
+
+                sqlx::Error::RowNotFound => return Err(StatusCode::INTERNAL_SERVER_ERROR),
+                _ => return Err(StatusCode::BAD_REQUEST),
+            }
+        },
+
+
 
     }
 
 }
+
+
 
 async fn get_rows(State(state): State<AppState>, Json(day): Json<ID>) -> Result<Json<Vec<Row>>, StatusCode> {
 
