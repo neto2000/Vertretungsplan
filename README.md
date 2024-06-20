@@ -68,4 +68,8 @@
 
    - [ ] return Errors insted of .expect()
 
+   - [ ] german week days
+
+   - [ ] database row creation from normal user?
+
 

@@ -3,15 +3,20 @@
 
   import { onMount } from 'svelte';
 
-  let test_rows = 15
+
+  export let day_id;
+
+  let day_exists = false;
 
   let db_rows = [];
   
   onMount(async () => {
-    await get_rows();
+    await get_rows(day_id);
   });
 
-  async function get_rows() {
+  $: get_rows(day_id)
+
+  async function get_rows(id) {
 
     const res = await fetch('/get_rows', {
         method: 'POST',
@@ -19,13 +24,22 @@
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          id: 1,
+          id: id,
         }),
     })
+
+    if (res.status != 200) {
+
+      day_exists = false
+
+      return
+    }
     
     db_rows = await res.json()
 
     console.log(db_rows[0].id);
+
+    day_exists = true
 
   
   }
@@ -46,9 +60,20 @@
       <th>Info</th>
     </tr>
 
-    {#each db_rows as row}
-      <TableRow row={row} /> 
-    {/each}
+
+    {#if day_exists}
+      
+      {#each db_rows as row}
+        <TableRow row={row} /> 
+      {/each}
+
+    {:else}
+      {#each {length: 9} as _, i}
+        <td>-</td> 
+      {/each}
+    {/if}
+
+    
 
   </table>
 
