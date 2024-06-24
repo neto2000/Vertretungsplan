@@ -56,6 +56,8 @@
 
    - [ ] sort options (class, fach, etc.)
 
+   - [ ] when next day doesnt exists, show empty screen
+
   
   ### Backend (rust)
 
