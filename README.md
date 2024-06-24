@@ -55,6 +55,7 @@
    - [ ] day logic
 
    - [ ] sort options (class, fach, etc.)
+   - [ ] show update time
 
    - [ ] when next day doesnt exists, show empty screen
 
