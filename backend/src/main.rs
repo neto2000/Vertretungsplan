@@ -94,6 +94,7 @@ async fn main() {
     .route("/update", post(update))
     .route("/remove", post(remove))
     .route("/current_day", get(add_current_day))
+    .route("/get_current_day", get(get_current_day))
     .with_state(state);
 
     let addr = SocketAddr::from(([127,0,0,1], 7000));
@@ -206,6 +207,20 @@ async fn add_current_day(State(state): State<AppState>) -> Result<Json<ID>, Stat
     };
 
 }
+
+async fn get_current_day(State(state): State<AppState>) -> Result<Json<ID>, StatusCode> {
+
+    let now = chrono::Local::now();
+
+    let date_string: String = now.format("%d.%m.%Y").to_string();
+
+    match db::get_day_from_string(&state.db, &date_string).await {
+        Ok(id) => return Ok(Json(id)),
+        Err(e) => return Err(StatusCode::INTERNAL_SERVER_ERROR),
+    };
+
+}
+
 // async fn get_next_day(State(state): State<AppState>, Json(previous_day): Json<ID>) -> Result<Json<Date>, StatusCode> {
 //
 //     match db::get_day(&state.db, previous_day.id).await {
@@ -274,6 +289,10 @@ async fn get_rows(State(state): State<AppState>, Json(day): Json<ID>) -> Result<
     match db::get_rows(&state.db, day.id).await {
 
         Ok(rows) => {
+
+            if rows.len() == 0 {
+                return Err(StatusCode::INTERNAL_SERVER_ERROR)
+            }
 
             println!("id: {}", day.id);
             return Ok(Json(rows))

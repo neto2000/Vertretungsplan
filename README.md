@@ -54,10 +54,12 @@
 
    - [ ] day logic
 
+   - [ ] admin: show last db entry and not current_day
+
    - [ ] sort options (class, fach, etc.)
    - [ ] show update time
 
-   - [ ] when next day doesnt exists, show empty screen
+   - [x] when next day doesnt exists, show empty screen
 
   
   ### Backend (rust)
@@ -73,6 +75,6 @@
 
    - [ ] german week days
 
-   - [ ] database row creation from normal user?
+   - [x] database row creation from normal user?
 
 

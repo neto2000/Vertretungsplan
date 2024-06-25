@@ -14,7 +14,7 @@
 
   async function get_current_day() {
 
-    const res = await fetch('/current_day', {
+    const res = await fetch('/get_current_day', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
@@ -36,6 +36,16 @@
           id: current_day.id,
         }),
     })
+
+    console.log(res2.status)
+    
+    if (res2.status == 500) {
+
+      console.log("no row")
+
+      return
+
+    }
 
     let json_res2 = await res2.json();
 
@@ -59,42 +69,21 @@
         }),
     })
 
-    if(res2.status == 500) 
-    {
-      const res3 = await fetch('/add_day', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          id: current_day.id - 1,
-        }),
-      })
-      
-      const res4 = await fetch('/get_day', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-      body: JSON.stringify({
-          id: current_day.id,
-        }),
-      })
 
-      
-      let json_res4 = await res4.json();
+    console.log(res2.status)
 
-      current_day.date = json_res4.datum;
-      current_day.week_day = json_res4.week_day;
+    if (res2.status == 500) {
 
+      console.log("no row")
+
+      return
 
     }
-    else if (res2.status == 200) {
-      let json_res2 = await res2.json();
 
-      current_day.date = json_res2.datum;
-      current_day.week_day = json_res2.week_day;
-    }
+    let json_res2 = await res2.json();
+
+    current_day.date = json_res2.datum;
+    current_day.week_day = json_res2.week_day;
 
   }
 </script>

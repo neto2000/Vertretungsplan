@@ -28,6 +28,8 @@
         }),
     })
 
+    console.log(res.status)
+
     if (res.status != 200) {
 
       day_exists = false
