@@ -5,6 +5,8 @@
 
   let current_day = {id: 1, date: "08.09.2023", week_day: "Montag"};
 
+  let today_is_active = true;
+
 
   onMount(async () => {
 
@@ -13,6 +15,9 @@
 
 
   async function get_current_day() {
+
+
+    today_is_active = true;
 
     const res = await fetch('/get_current_day', {
         method: 'GET',
@@ -55,6 +60,9 @@
 
   async function next_day() {
 
+    today_is_active = false;
+
+
     current_day.id = current_day.id + 1;
 
 
@@ -94,9 +102,18 @@
     <h2 class="plan-heading">{current_day.week_day} der {current_day.date}</h2>
 
     <div class="button-container">
-      <button class="active" on:click={get_current_day}>Heute</button>
-      <button class="not-active" on:click={next_day}>Morgen</button>
-    </div>
+
+      {#if today_is_active}
+        <button class="active" on:click={get_current_day}>Heute</button>
+        <button class="not-active" on:click={next_day}>Morgen</button>
+
+      {:else}
+        <button class="not-active" on:click={get_current_day}>Heute</button>
+        <button class="active" on:click={next_day}>Morgen</button>
+
+      {/if}
+
+          </div>
 
     <div class="info-container">
       <h3 class="info-head">Infos</h3>
