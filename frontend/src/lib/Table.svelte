@@ -18,6 +18,13 @@
 
   async function get_rows(id) {
 
+    if (id == -1) {
+
+      day_exists = false
+
+      return
+    }
+
     const res = await fetch('/get_rows', {
         method: 'POST',
         headers: {

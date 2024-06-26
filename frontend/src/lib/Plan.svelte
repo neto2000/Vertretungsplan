@@ -19,34 +19,39 @@
 
     today_is_active = true;
 
-    const res = await fetch('/get_current_day', {
+
+
+
+    const res = await fetch('/get_current_day_string', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
         },
     })
+
     
     let json_res = await res.json();
+  
 
-    console.log("current_day_id: " + json_res.id)
+    current_day.date = json_res.datum;
+    current_day.week_day = json_res.week_day;
 
-    current_day.id = json_res.id;
 
-    const res2 = await fetch('/get_day', {
-        method: 'POST',
+
+
+    const res2 = await fetch('/get_current_day', {
+        method: 'GET',
         headers: {
           'Content-Type': 'application/json'
         },
-      body: JSON.stringify({
-          id: current_day.id,
-        }),
     })
 
-    console.log(res2.status)
     
-    if (res2.status == 500) {
+    if (res2.status != 200) {
 
       console.log("no row")
+
+      current_day.id = -1;
 
       return
 
@@ -54,8 +59,8 @@
 
     let json_res2 = await res2.json();
 
-    current_day.date = json_res2.datum;
-    current_day.week_day = json_res2.week_day;
+    current_day.id = json_res2.id;
+
   }
 
   async function next_day() {
@@ -63,26 +68,36 @@
     today_is_active = false;
 
 
-    current_day.id = current_day.id + 1;
-
-
-
-    const res2 = await fetch('/get_day', {
-        method: 'POST',
+   const res = await fetch('/get_next_day_string', {
+        method: 'GET',
         headers: {
           'Content-Type': 'application/json'
         },
-      body: JSON.stringify({
-          id: current_day.id,
-        }),
     })
 
+    
+    let json_res = await res.json();
+  
 
-    console.log(res2.status)
+    current_day.date = json_res.datum;
+    current_day.week_day = json_res.week_day;
 
-    if (res2.status == 500) {
+
+
+
+    const res2 = await fetch('/get_next_day', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+    })
+
+    
+    if (res2.status != 200) {
 
       console.log("no row")
+
+      current_day.id = -1;
 
       return
 
@@ -90,8 +105,7 @@
 
     let json_res2 = await res2.json();
 
-    current_day.date = json_res2.datum;
-    current_day.week_day = json_res2.week_day;
+    current_day.id = json_res2.id;
 
   }
 </script>

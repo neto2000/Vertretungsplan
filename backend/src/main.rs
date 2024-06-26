@@ -95,6 +95,9 @@ async fn main() {
     .route("/remove", post(remove))
     .route("/current_day", get(add_current_day))
     .route("/get_current_day", get(get_current_day))
+    .route("/get_current_day_string", get(get_current_day_string))
+    .route("/get_next_day", get(get_next_day))
+    .route("/get_next_day_string", get(get_next_day_string))
     .with_state(state);
 
     let addr = SocketAddr::from(([127,0,0,1], 7000));
@@ -208,57 +211,87 @@ async fn add_current_day(State(state): State<AppState>) -> Result<Json<ID>, Stat
 
 }
 
+
+async fn get_current_day_string(State(state): State<AppState>) -> Result<Json<Date>, StatusCode> {
+
+     
+    let now = next_week_day(chrono::Local::now());
+
+    let date_string: String = now.format("%d.%m.%Y").to_string();
+
+    let weekday: String = now.format("%A").to_string();
+    
+    let date: Date = Date { datum: date_string, week_day: weekday } ;
+
+    return Ok(Json(date))
+}
+
 async fn get_current_day(State(state): State<AppState>) -> Result<Json<ID>, StatusCode> {
 
-    let now = chrono::Local::now();
+    let now = next_week_day(chrono::Local::now());
 
     let date_string: String = now.format("%d.%m.%Y").to_string();
 
     match db::get_day_from_string(&state.db, &date_string).await {
         Ok(id) => return Ok(Json(id)),
-        Err(e) => return Err(StatusCode::INTERNAL_SERVER_ERROR),
+        Err(_e) => return Err(StatusCode::INTERNAL_SERVER_ERROR),
     };
 
 }
 
-// async fn get_next_day(State(state): State<AppState>, Json(previous_day): Json<ID>) -> Result<Json<Date>, StatusCode> {
-//
-//     match db::get_day(&state.db, previous_day.id).await {
-//         
-//         Ok(date) => return Ok(Json(date)),
-//         Err(e) => {
-//
-//             match e {
-//         
-//                 sqlx::Error::RowNotFound => {
-//
-//                     let date = chrono::Local::now().checked_add_days(chrono::Days::new(1)).unwrap();
-//
-//                     let date_string = date.format("%d.%m.%Y").to_string();
-//
-//                     let weekday: String = date.format("%A").to_string();
-//
-//                     let day = Date {
-//                         datum: date_string.clone(),
-//                         week_day: weekday,
-//                     };
-//
-//                     db::add_day(&state.db, &day).await;
-//                 
-//                     match db::get_day(&state.db, previous_day.id).await {
-//
-//                         Ok(id) => return Ok(Json(id)),
-//                         Err(_e) => return Err(StatusCode::INTERNAL_SERVER_ERROR),
-//                     }
-//                 },
-//                 _ => return Err(StatusCode::INTERNAL_SERVER_ERROR)
-//             }
-//         },
-//
-//     }
-//
-//
-// }
+
+
+
+
+
+async fn get_next_day_string(State(state): State<AppState>) -> Result<Json<Date>, StatusCode> {
+
+
+    let tomorrow = next_week_day(chrono::Local::now().checked_add_days(chrono::Days::new(1)).unwrap());
+
+    let date_string: String = tomorrow .format("%d.%m.%Y").to_string();
+
+    let weekday: String = tomorrow.format("%A").to_string();
+    
+    let date: Date = Date { datum: date_string, week_day: weekday } ;
+
+    return Ok(Json(date))
+
+}
+
+async fn get_next_day(State(state): State<AppState>) -> Result<Json<ID>, StatusCode> {
+
+    
+    let tomorrow = next_week_day(chrono::Local::now().checked_add_days(chrono::Days::new(1)).unwrap());
+
+    let date_string: String = tomorrow.format("%d.%m.%Y").to_string();
+
+    match db::get_day_from_string(&state.db, &date_string).await {
+        Ok(id) => return Ok(Json(id)),
+        Err(_e) => return Err(StatusCode::INTERNAL_SERVER_ERROR),
+    };
+
+}
+
+fn next_week_day(day: chrono::DateTime<chrono::Local>) -> chrono::DateTime<chrono::Local> {
+
+
+    let weekday: String = day.format("%A").to_string();
+
+    if weekday == "saturday" {
+
+        return day.checked_add_days(chrono::Days::new(2)).unwrap();
+
+    }
+    if weekday == "sunday" {
+
+        return day.checked_add_days(chrono::Days::new(1)).unwrap();
+    }
+
+    return day
+}
+
+
 
 
 async fn get_day(State(state): State<AppState>, Json(day): Json<ID>) -> Result<Json<Date>, StatusCode>{

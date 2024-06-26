@@ -61,6 +61,9 @@
 
    - [x] when next day doesnt exists, show empty screen
 
+   - [x] only display weekdays
+   - [x] if current day doesnt exists in db: only return date and week day and no id
+
   
   ### Backend (rust)
 
@@ -76,5 +79,7 @@
    - [ ] german week days
 
    - [x] database row creation from normal user?
+
+   - [x] implement get_next_day
 
 
