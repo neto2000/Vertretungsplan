@@ -48,9 +48,6 @@
    - [ ] implement Stundenplan design
    - [ ] click cursor on buttons
    - [ ] button animations
-   - [x] use browsers back button (url hash)
-
-   - [x] normal plan: get_rows with POST request to /get_rows
 
    - [ ] day logic
 
@@ -59,11 +56,10 @@
    - [ ] sort options (class, fach, etc.)
    - [ ] show update time
 
-   - [x] when next day doesnt exists, show empty screen
+   - [ ] admin: day selection
+   - [ ] admin: if day doesnt exists show button "add day" instead of automatically adding it
 
-   - [x] only display weekdays
-   - [x] if current day doesnt exists in db: only return date and week day and no id
-
+   
   
   ### Backend (rust)
 

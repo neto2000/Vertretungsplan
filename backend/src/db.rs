@@ -6,6 +6,7 @@ use dotenv::dotenv;
 use crate::Date;
 use crate::ID;
 
+
 pub async fn connect() -> Pool<MySql> {
 
     dotenv().ok();
@@ -57,6 +58,18 @@ pub async fn get_day_from_string(pool: &Pool<MySql>, string: &str) -> Result<ID,
 
     return Ok(day_id)
 }
+
+pub async fn get_last_day(pool: &Pool<MySql>) -> Result<ID, sqlx::Error> {
+    
+    let query = "SELECT max(id) FROM day";
+
+    let day_id = sqlx::query(query)
+        .fetch_one(pool)
+        .await?;
+
+    return Ok(ID { id: day_id.get("max(id)") })
+}
+
 
 pub async fn add_row(pool: &Pool<MySql>, row: &crate::Row) {
 

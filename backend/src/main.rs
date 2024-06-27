@@ -8,7 +8,7 @@ use axum::{
 
 //use tokio::stream;
 
-use std::net::SocketAddr;
+use std::{collections::HashMap, net::SocketAddr};
 
 use tower_http::services::{ServeDir};
 
@@ -60,7 +60,6 @@ struct ID {
 }
 
 
-
 #[tokio::main]
 async fn main() {
     println!("Hello, world!");
@@ -98,6 +97,7 @@ async fn main() {
     .route("/get_current_day_string", get(get_current_day_string))
     .route("/get_next_day", get(get_next_day))
     .route("/get_next_day_string", get(get_next_day_string))
+    .route("/get_last_day", get(get_last_day))
     .with_state(state);
 
     let addr = SocketAddr::from(([127,0,0,1], 7000));
@@ -210,6 +210,28 @@ async fn add_current_day(State(state): State<AppState>) -> Result<Json<ID>, Stat
     };
 
 }
+
+
+
+async fn get_last_day(State(state): State<AppState>) -> Result<Json<ID>, StatusCode> {
+
+
+    match db::get_last_day(&state.db).await {
+
+        Ok(id) => return Ok(Json(id)),
+        Err(e) => {
+            println!("{}", e);
+            return Err(StatusCode::INTERNAL_SERVER_ERROR)
+        },
+
+    };
+
+
+}
+ 
+
+
+
 
 
 async fn get_current_day_string(State(state): State<AppState>) -> Result<Json<Date>, StatusCode> {

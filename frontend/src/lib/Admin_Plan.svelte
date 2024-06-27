@@ -1,5 +1,6 @@
 <script>
   import AdminTabelle from "./Admin_Tabelle.svelte";
+  import DatePicker from "./Date_Picker.svelte";
 
 
   import { admin_rows } from "../stores";
@@ -9,7 +10,9 @@
 
   let current_day = {id: 1, date: "17.01.2024", week_day: "Montag"};
 
+  let day_exists = false;
 
+  let show_date = false;
 
 
   let rows = [];
@@ -22,13 +25,19 @@
 
   onMount(async () => {
 
-    await get_current_day();
+    await get_last_day();
   });
 
+  
+  function switch_date_picker() {
 
-  async function get_current_day() {
+    show_date = !show_date
+  }
 
-    const res = await fetch('/current_day', {
+
+  async function get_last_day() {
+
+    const res = await fetch('/get_last_day', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
@@ -147,9 +156,13 @@
 
     <div class="button-container">
       <button class="active" on:click={previous_day}>&lt;</button>
-      <button class="not-active" on:click={get_current_day}>{current_day.week_day}, der {current_day.date}</button>
+      <button class="not-active" on:click={switch_date_picker}>{current_day.week_day}, der {current_day.date}</button>
       <button class="active" on:click={next_day}>&gt;</button>
     </div>
+
+    {#if show_date}
+      <DatePicker />   
+    {/if}
 
     <div class="info-container">
       <h3 class="info-head">Infos</h3>
