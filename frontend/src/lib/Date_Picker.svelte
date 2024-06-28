@@ -5,22 +5,40 @@
 
   let test = is_leap_year(2022)
 
-  let month = "March"
+  let year = 2024
+
+  let month = 3
 
   let week_day = 3
 
+
+
   let day_array = [[]];
 
+  let week_dict = {
+    1 : "January",
+    2 : "Febuary",
+    3 : "March",
+    4 : "April",
+    5 : "May",
+    6 : "June",
+    7 : "July",
+    8 : "August",
+    9 : "September",
+    10 : "October",
+    11 : "November",
+    12 : "December",
 
+  }
   
 
   onMount(() => {
-    get_day_array()
+    create_day_array()
   });
 
 
 
-  function get_day_array() {
+  function create_day_array() {
 
     console.log("on mount")
 
@@ -104,12 +122,27 @@
 
 
   function previous_month() {
+    
+    month--
+    
+    if (month < 1) {
 
+      month = 12
 
+      year--
+    } 
   }
   
   function next_month() {
+  
+    month++
 
+    if (month > 12) {
+
+      month = 1
+      
+      year++
+    }
 
   }
 
@@ -119,7 +152,7 @@
 
   <div class="button-container">
     <button class="active" on:click={previous_month}>&lt;</button>
-    <button class="not-active">{month}</button>
+    <button class="not-active">{week_dict[month]}</button>
     <button class="active" on:click={next_month}>&gt;</button>
   </div>
 
