@@ -11,6 +11,8 @@
 
   let week_day = 3
 
+  let active_day = 10
+
 
 
   let day_array = [[]];
@@ -172,7 +174,16 @@
       <tr>
 
         {#each row as item}
-          <td>{item}</td>
+          <td>
+
+            {#if item == active_day}
+              <button class="date-active-button" on:click={() => {if (item != "-") active_day = item}}>{item}</button>
+            {:else}
+              <button class="date-button" on:click={() => {if (item != "-") active_day = item}}>{item}</button>
+            {/if}            
+
+            
+          </td>
         {/each}
         
       </tr>
@@ -181,11 +192,44 @@
 
   </table>
 
+  <input bind:value={year} class="input" />
 
 </div>
 
 
 <style>
+
+  .date-button {
+
+    width: 35px;
+    height: 35px;
+
+    background-color: white;
+    
+    border-radius: 8px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: lightgray;
+
+    cursor: pointer;
+  }
+
+  .date-active-button {
+
+    width: 35px;
+    height: 35px;
+
+    background-color: var(--accent);
+    color: white;
+
+    border-radius: 8px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--accent);
+
+    cursor: pointer;
+  }
+
 
   .table-head {
     
@@ -307,6 +351,26 @@
     margin-left: 2vw;
     margin-right: 2vw;
     
-  } 
+  }
+
+  .input {
+
+    width: 5vw;
+
+    margin-bottom: 2vh;
+
+    padding-top: 0.5vh;
+    padding-bottom: 0.5vh;
+
+
+    border-radius: 8px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+
+
+    text-align: center;
+
+  }
  
 </style>
