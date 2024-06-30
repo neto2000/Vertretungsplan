@@ -161,7 +161,7 @@
     </div>
 
     {#if show_date}
-      <DatePicker />   
+      <DatePicker bind:date={current_day.date} />   
     {/if}
 
     <div class="info-container">

@@ -3,7 +3,10 @@
   import { onMount } from "svelte";
 
 
-  let test = is_leap_year(2022)
+  export let date;
+
+
+  let test = get_weekday_of_first(6,2024) 
 
   let year = 2024
 
@@ -35,15 +38,39 @@
   
 
   onMount(() => {
+    split_date(date)
+
     create_day_array()
   });
 
+  function split_date(date) {
 
+    let dates = date.split(".")
+
+    active_day = parseInt(dates[0])
+    month = parseInt(dates[1])
+    year = parseInt(dates[2])
+
+    let wd = get_weekday_of_first(month, year)
+
+    if (wd == 0) {
+      
+      week_day = 6
+
+    }
+    else {
+
+      week_day = wd - 1
+    }
+
+
+  }
 
   function create_day_array() {
 
     console.log("on mount")
-
+    
+    day_array = [[]]
 
     let current_row = 0
 
@@ -61,9 +88,9 @@
 
     } 
 
-    let month_length = 30
+    let month_length = get_month_length(month)
 
-    for (let i = 1; i<= month_length; i++) {
+    for (let i = 1; i <= month_length; i++) {
       
 
       day_array[current_row].push(i)
@@ -91,7 +118,11 @@
 
   function get_weekday_of_first(month, year) {
 
+    const d = new Date(year, month - 1 ,1,1,0,0,0)
 
+    return d.getDay()
+
+    
   }
 
   function is_leap_year(year) {
@@ -121,6 +152,46 @@
 
   }
 
+  function get_month_length(month) {
+
+    if (month == 2) {
+      if(is_leap_year(year)) {
+
+        return 29
+      }
+      
+      return 28
+    }
+
+    if (month <= 7) {
+
+      if (month % 2 == 0) {
+
+        return 30
+      }
+      else {
+
+        return 31
+      }
+
+    }
+    else {
+
+      if (month % 2 == 1) {
+
+        return 30
+      }
+      else {
+
+        return 31
+      }
+
+    }
+
+  }
+
+
+
 
 
   function previous_month() {
@@ -133,6 +204,10 @@
 
       year--
     } 
+    
+    week_day = get_weekday_of_first(month, year)
+    
+    create_day_array()
   }
   
   function next_month() {
@@ -146,6 +221,10 @@
       year++
     }
 
+    week_day = get_weekday_of_first(month, year)
+
+
+    create_day_array()
   }
 
 </script>
@@ -177,9 +256,15 @@
           <td>
 
             {#if item == active_day}
-              <button class="date-active-button" on:click={() => {if (item != "-") active_day = item}}>{item}</button>
+              <button class="date-active-button" on:click={() => {if (item != "-") {
+                active_day = item;
+                date = item.toString() + "." + month.toString() + "." + year.toString()
+              }}}>{item}</button>
             {:else}
-              <button class="date-button" on:click={() => {if (item != "-") active_day = item}}>{item}</button>
+              <button class="date-button" on:click={() => {if (item != "-") {
+                active_day = item
+                date = item.toString() + "." + month.toString() + "." + year.toString()
+              }}}>{item}</button>
             {/if}            
 
             
@@ -337,7 +422,7 @@
 
     border: solid;
 
-    border-width: 1px;
+    border-width: 0px;
 
 
 
