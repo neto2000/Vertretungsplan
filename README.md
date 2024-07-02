@@ -59,6 +59,10 @@
    - [ ] admin: day selection
    - [ ] admin: if day doesnt exists show button "add day" instead of automatically adding it
 
+   - [ ] admin: funtion day has db entry
+
+   - [ ] admin: date update weekday
+
    
   
   ### Backend (rust)

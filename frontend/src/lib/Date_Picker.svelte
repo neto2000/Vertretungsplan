@@ -227,6 +227,17 @@
     create_day_array()
   }
 
+
+  function update_date() {
+
+    
+    week_day = get_weekday_of_first(month, year)
+
+    create_day_array()
+
+    date = active_day.toString().padStart(2,"0") + "." + month.toString().padStart(2,"0") + "." + year.toString()
+  }
+
 </script>
 
 <div class="date-container">
@@ -258,12 +269,12 @@
             {#if item == active_day}
               <button class="date-active-button" on:click={() => {if (item != "-") {
                 active_day = item;
-                date = item.toString() + "." + month.toString() + "." + year.toString()
+                date = item.toString().padStart(2,"0") + "." + month.toString().padStart(2,"0") + "." + year.toString()
               }}}>{item}</button>
             {:else}
               <button class="date-button" on:click={() => {if (item != "-") {
                 active_day = item
-                date = item.toString() + "." + month.toString() + "." + year.toString()
+                date = item.toString().padStart(2,"0") + "." + month.toString().padStart(2,"0") + "." + year.toString()
               }}}>{item}</button>
             {/if}            
 
@@ -277,7 +288,7 @@
 
   </table>
 
-  <input bind:value={year} class="input" />
+  <input bind:value={year} on:change={update_date} class="input" />
 
 </div>
 
