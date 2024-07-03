@@ -66,6 +66,69 @@
     current_day.week_day = json_res2.week_day;
   }
 
+
+  async function is_day_in_db(date) {
+
+    const res = await fetch('get_day_by_string', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        datum: date,
+        week_day: "Wednesday",
+      }),
+    })
+
+
+    if (res.status == 200) {
+
+        day_exists = false
+
+
+        let json_res = await res.json()
+
+        current_day.id = json_res.id;
+
+        const res2 = await fetch('/get_day', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+              id: current_day.id,
+            }),
+        })
+
+        let json_res2 = await res2.json();
+
+        current_day.date = json_res2.datum;
+        current_day.week_day = json_res2.week_day;
+
+
+    }
+
+    if (res.status == 500) {
+
+      // add day mask
+
+      day_exists = false
+    }
+
+  }
+
+
+
+  async function add_day() {
+
+
+
+
+  }
+
+
+
+
   async function previous_day() {
 
     if (current_day.id == 1) {
@@ -173,8 +236,12 @@
 
     </div>
 
-    <AdminTabelle day_id={current_day.id} />
 
+    {#if day_exists}
+      <AdminTabelle day_id={current_day.id} />
+    {:else}
+      <button class="active" on:click={add_day}>Add day</button>
+    {/if}
 
   </div>
 

@@ -98,6 +98,7 @@ async fn main() {
     .route("/get_next_day", get(get_next_day))
     .route("/get_next_day_string", get(get_next_day_string))
     .route("/get_last_day", get(get_last_day))
+    .route("/get_day_by_string", post(get_day_by_string))
     .with_state(state);
 
     let addr = SocketAddr::from(([127,0,0,1], 7000));
@@ -112,6 +113,14 @@ async fn main() {
 
 
 
+
+
+
+
+
+// ------------
+// CREATE
+// ------------
 
 async fn add_row(State(state): State<AppState>, Json(payload): Json<Row>) -> StatusCode {
 
@@ -211,6 +220,13 @@ async fn add_current_day(State(state): State<AppState>) -> Result<Json<ID>, Stat
 
 }
 
+
+
+
+
+// ---------
+// READ
+// ---------
 
 
 async fn get_last_day(State(state): State<AppState>) -> Result<Json<ID>, StatusCode> {
@@ -337,6 +353,20 @@ async fn get_day(State(state): State<AppState>, Json(day): Json<ID>) -> Result<J
 
 }
 
+async fn get_day_by_string(State(state): State<AppState>, Json(day): Json<Date>) -> Result<Json<ID>, StatusCode>{
+
+
+    match db::get_day_from_string(&state.db, &day.datum).await {
+
+        Ok(id) => return Ok(Json(id)),
+        Err(_e) => return Err(StatusCode::BAD_REQUEST)
+
+
+    }
+
+
+}
+
 
 
 async fn get_rows(State(state): State<AppState>, Json(day): Json<ID>) -> Result<Json<Vec<Row>>, StatusCode> {
@@ -364,6 +394,13 @@ async fn get_rows(State(state): State<AppState>, Json(day): Json<ID>) -> Result<
 }
 
 
+
+
+
+// ---------
+// UPDATE
+// ---------
+
 async fn update(State(state): State<AppState>, Json(new_rows): Json<Vec<Row>>) {
 
     println!("update");
@@ -373,6 +410,15 @@ async fn update(State(state): State<AppState>, Json(new_rows): Json<Vec<Row>>) {
         db::update_row(&state.db, new_row).await;
     }
 }
+
+
+
+
+
+
+// --------
+// DELETE
+// --------
 
 async fn remove(State(state): State<AppState>, Json(row): Json<ID>) {
 
