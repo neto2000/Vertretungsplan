@@ -137,6 +137,24 @@
 
 
     console.log("add day")
+    
+
+    const res = await fetch('add_day', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        datum: current_day.date,
+        week_day: current_day.week_day,
+      }),
+    })
+
+    let json_res = await res.json();
+
+    current_day.id = json_res.id;
+
+    is_day_in_db(current_day.date)
 
   }
 
@@ -186,7 +204,7 @@
 
     if(res2.status == 500) 
     {
-      const res3 = await fetch('/add_day', {
+      const res3 = await fetch('/add_day_previous', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -254,7 +272,7 @@
     {#if day_exists}
       <AdminTabelle day_id={current_day.id} />
     {:else}
-      <button class="active" on:click={add_day}>Add day</button>
+      <button class="add-day-button" on:click={add_day}>Add day test</button>
     {/if}
 
   </div>
@@ -329,6 +347,33 @@
 
 
      cursor: pointer;
+
+  }
+
+  .add-day-button {
+    
+    padding-top: 6px;
+    padding-bottom: 6px;
+
+    margin-top: 3vh;
+    margin-bottom: 2vh;
+
+
+    background-color: var(--accent);
+  
+
+    font-family: 'Rubik', sans-serif;
+
+    font-size: 16px;
+
+    color: var(--secondary);
+
+    border: none;
+    border-radius: 10px;
+
+
+    cursor: pointer;
+
 
   }
 

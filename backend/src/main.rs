@@ -89,7 +89,7 @@ async fn main() {
     .route("/add_row", post(add_row))
     .route("/get_rows", post(get_rows))
     .route("/get_day", post(get_day))
-    .route("/add_day", post(add_day))
+    .route("/add_day_previous", post(add_day_previous))
     .route("/update", post(update))
     .route("/remove", post(remove))
     .route("/current_day", get(add_current_day))
@@ -99,6 +99,7 @@ async fn main() {
     .route("/get_next_day_string", get(get_next_day_string))
     .route("/get_last_day", get(get_last_day))
     .route("/get_day_by_string", post(get_day_by_string))
+    .route("/add_day", post(add_day))
     .with_state(state);
 
     let addr = SocketAddr::from(([127,0,0,1], 7000));
@@ -135,7 +136,21 @@ async fn add_row(State(state): State<AppState>, Json(payload): Json<Row>) -> Sta
     StatusCode::CREATED
 }
 
-async fn add_day(State(state): State<AppState>, Json(previous_day): Json<ID>) -> StatusCode{
+async fn add_day(State(state): State<AppState>, Json(date): Json<Date>) -> Result<Json<ID>, StatusCode> {
+
+    db::add_day(&state.db, &date).await; 
+
+    match db::get_day_from_string(&state.db, &date.datum).await {
+        
+        Ok(id) => return Ok(Json(id)),
+        Err(_e) => return Err(StatusCode::INTERNAL_SERVER_ERROR),
+
+    } 
+
+}
+
+
+async fn add_day_previous(State(state): State<AppState>, Json(previous_day): Json<ID>) -> StatusCode{
 
     let date_str: String;
 
