@@ -51,12 +51,12 @@
 
    - [ ] day logic
 
-   - [ ] admin: show last db entry and not current_day
+   - [x] admin: show last db entry and not current_day
 
    - [ ] sort options (class, fach, etc.)
    - [ ] show update time
 
-   - [ ] admin: day selection
+   - [x] admin: day selection
    - [ ] admin: if day doesnt exists show button "add day" instead of automatically adding it
    - [ ] admin: update rows automatically maybe with on:change
 

@@ -359,7 +359,7 @@ async fn get_day_by_string(State(state): State<AppState>, Json(day): Json<Date>)
     match db::get_day_from_string(&state.db, &day.datum).await {
 
         Ok(id) => return Ok(Json(id)),
-        Err(_e) => return Err(StatusCode::BAD_REQUEST)
+        Err(_e) => return Err(StatusCode::INTERNAL_SERVER_ERROR)
 
 
     }

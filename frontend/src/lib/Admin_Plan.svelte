@@ -60,14 +60,28 @@
         }),
     })
 
-    let json_res2 = await res2.json();
+    if (res2.status == 200) {
 
-    current_day.date = json_res2.datum;
-    current_day.week_day = json_res2.week_day;
+      day_exists = true
+
+      let json_res2 = await res2.json();
+
+      current_day.date = json_res2.datum;
+      current_day.week_day = json_res2.week_day;
+
+    }
+
+    
   }
 
 
+
+
   async function is_day_in_db(date) {
+
+
+    console.log(date)
+
 
     const res = await fetch('get_day_by_string', {
       method: 'POST',
@@ -83,7 +97,7 @@
 
     if (res.status == 200) {
 
-        day_exists = false
+        day_exists = true
 
 
         let json_res = await res.json()
@@ -122,7 +136,7 @@
   async function add_day() {
 
 
-
+    console.log("add day")
 
   }
 
@@ -224,7 +238,7 @@
     </div>
 
     {#if show_date}
-      <DatePicker bind:date={current_day.date} />   
+      <DatePicker bind:date={current_day.date} date_changed={() => is_day_in_db(current_day.date)} />   
     {/if}
 
     <div class="info-container">

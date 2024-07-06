@@ -5,6 +5,8 @@
 
   export let date;
 
+  export let date_changed = null
+
 
   let test = get_weekday_of_first(6,2024) 
 
@@ -236,6 +238,8 @@
     create_day_array()
 
     date = active_day.toString().padStart(2,"0") + "." + month.toString().padStart(2,"0") + "." + year.toString()
+
+    date_changed()
   }
 
 </script>
@@ -270,11 +274,15 @@
               <button class="date-active-button" on:click={() => {if (item != "-") {
                 active_day = item;
                 date = item.toString().padStart(2,"0") + "." + month.toString().padStart(2,"0") + "." + year.toString()
+                
+                date_changed()
               }}}>{item}</button>
             {:else}
               <button class="date-button" on:click={() => {if (item != "-") {
                 active_day = item
                 date = item.toString().padStart(2,"0") + "." + month.toString().padStart(2,"0") + "." + year.toString()
+
+                date_changed()
               }}}>{item}</button>
             {/if}            
 
