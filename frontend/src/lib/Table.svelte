@@ -6,7 +6,7 @@
 
   export let day_id;
 
-  let day_exists = false;
+  let day_has_entries = false;
 
   let db_rows = [];
   
@@ -20,7 +20,7 @@
 
     if (id == -1) {
 
-      day_exists = false
+      day_has_entries = false
 
       return
     }
@@ -39,7 +39,7 @@
 
     if (res.status != 200) {
 
-      day_exists = false
+      day_has_entries  = false
 
       return
     }
@@ -48,7 +48,7 @@
 
     console.log(db_rows[0].id);
 
-    day_exists = true
+    day_has_entries   = true
 
   
   }
@@ -70,7 +70,7 @@
     </tr>
 
 
-    {#if day_exists}
+    {#if day_has_entries}
       
       {#each db_rows as row}
         <TableRow row={row} /> 

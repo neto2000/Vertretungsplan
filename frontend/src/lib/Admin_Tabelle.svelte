@@ -5,6 +5,7 @@
 
   export let day_id;
 
+  let day_has_entries = false
 
 
   let rows = [];
@@ -47,9 +48,21 @@
         }),
     })
     
+    
+
+    if (res.status != 200) {
+
+      day_has_entries  = false
+
+      return
+    }
+    
     let db_rows = await res.json()
 
-    //console.log(db_rows[0].id);
+
+    console.log(db_rows[0].id);
+
+    day_has_entries = true
 
   
     admin_rows.set(db_rows);
@@ -135,9 +148,11 @@
   <div class="table-container">
     
     <div class="button-container">
-      {#each Array(row_count) as _, i}
-        <button class="delete-button" on:click={() => {delete_row(i)}}>X</button>
-      {/each}
+      {#if day_has_entries}
+         {#each Array(row_count) as _, i}
+          <button class="delete-button" on:click={() => {delete_row(i)}}>X</button>
+        {/each}
+      {/if}
     </div>
 
     <table class="table">
@@ -152,17 +167,27 @@
         <th>Typ</th>
         <th>Info</th>
       </tr>
-
-      {#each Array(row_count) as _, i}
-        <AdminPlanRow id={i}  /> 
-      {/each}
+      
+      {#if day_has_entries}
+         {#each Array(row_count) as _, i}
+          <AdminPlanRow id={i}  /> 
+        {/each}
+      {:else}
+         {#each {length: 9} as _, i}
+            <td>-</td> 
+          {/each}
+      {/if}
+      
 
     </table>
     
     <div class="button-container" style="opacity: 0;">
-      {#each Array(row_count) as _, i}
-        <button class="delete-button">X</button>
-      {/each}
+      {#if day_has_entries}
+         {#each Array(row_count) as _, i}
+            <button class="delete-button">X</button>
+          {/each}
+      {/if}
+      
     </div>
 
   </div>
