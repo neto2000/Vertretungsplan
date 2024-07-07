@@ -300,7 +300,7 @@ async fn get_current_day(State(state): State<AppState>) -> Result<Json<ID>, Stat
 async fn get_next_day_string(State(state): State<AppState>) -> Result<Json<Date>, StatusCode> {
 
 
-    let tomorrow = next_week_day(chrono::Local::now().checked_add_days(chrono::Days::new(1)).unwrap());
+    let tomorrow = next_week_day(chrono::Local::now()).checked_add_days(chrono::Days::new(1)).unwrap();
 
     let date_string: String = tomorrow .format("%d.%m.%Y").to_string();
 
@@ -315,7 +315,7 @@ async fn get_next_day_string(State(state): State<AppState>) -> Result<Json<Date>
 async fn get_next_day(State(state): State<AppState>) -> Result<Json<ID>, StatusCode> {
 
     
-    let tomorrow = next_week_day(chrono::Local::now().checked_add_days(chrono::Days::new(1)).unwrap());
+    let tomorrow = next_week_day(chrono::Local::now()).checked_add_days(chrono::Days::new(1)).unwrap();
 
     let date_string: String = tomorrow.format("%d.%m.%Y").to_string();
 
@@ -331,12 +331,12 @@ fn next_week_day(day: chrono::DateTime<chrono::Local>) -> chrono::DateTime<chron
 
     let weekday: String = day.format("%A").to_string();
 
-    if weekday == "saturday" {
+    if weekday == "Saturday" {
 
         return day.checked_add_days(chrono::Days::new(2)).unwrap();
 
     }
-    if weekday == "sunday" {
+    if weekday == "Sunday" {
 
         return day.checked_add_days(chrono::Days::new(1)).unwrap();
     }
