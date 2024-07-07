@@ -272,7 +272,9 @@ async fn get_current_day_string(State(state): State<AppState>) -> Result<Json<Da
 
     let date_string: String = now.format("%d.%m.%Y").to_string();
 
-    let weekday: String = now.format("%A").to_string();
+    
+    let weekday: String = get_german_weekday(&now).to_string();
+
     
     let date: Date = Date { datum: date_string, week_day: weekday } ;
 
@@ -304,7 +306,8 @@ async fn get_next_day_string(State(state): State<AppState>) -> Result<Json<Date>
 
     let date_string: String = tomorrow .format("%d.%m.%Y").to_string();
 
-    let weekday: String = tomorrow.format("%A").to_string();
+    let weekday: String = get_german_weekday(&tomorrow).to_string();
+
     
     let date: Date = Date { datum: date_string, week_day: weekday } ;
 
@@ -342,6 +345,16 @@ fn next_week_day(day: chrono::DateTime<chrono::Local>) -> chrono::DateTime<chron
     }
 
     return day
+}
+
+fn get_german_weekday(day: &chrono::DateTime<chrono::Local>) -> &str {
+
+    let day_number = day.weekday().num_days_from_monday();
+
+    let weekday_list = vec!["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"];
+
+    return weekday_list[day_number as usize]
+
 }
 
 
