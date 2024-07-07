@@ -165,6 +165,8 @@
 
     margin-top: 25px;
 
+    cursor: pointer;
+
   }
 
   .trenner-text {
@@ -193,6 +195,8 @@
 
     height: 30px;
 
+    cursor: pointer;
+
   }
 
 
@@ -204,7 +208,7 @@
     font-size: 11px;
 
     margin: 0;
-
+    
     margin-right: 220px;
 
   }

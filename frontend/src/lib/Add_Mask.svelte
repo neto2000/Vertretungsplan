@@ -268,6 +268,8 @@
 
     background-color: white;
 
+    cursor: pointer;
+
   }
 
   .mask-icon {
@@ -290,6 +292,8 @@
 
     border-radius: 8px;
 
+    cursor: pointer;
+
   }
 
   .add-button {
@@ -309,6 +313,8 @@
     margin-left: 15px;
 
     margin-right: 40px;
+
+    cursor: pointer;
 
   }
 

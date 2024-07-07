@@ -272,7 +272,7 @@
     {#if day_exists}
       <AdminTabelle day_id={current_day.id} />
     {:else}
-      <button class="add-day-button" on:click={add_day}>Add day test</button>
+      <button class="add-day-button" on:click={add_day}>Add day</button>
     {/if}
 
   </div>
