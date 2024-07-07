@@ -5,6 +5,8 @@
 
   export let date;
 
+  export let day_name;
+
   export let date_changed = null
 
 
@@ -37,6 +39,8 @@
     12 : "December",
 
   }
+
+  let day_dict = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"]
   
 
   onMount(() => {
@@ -242,6 +246,21 @@
     date_changed()
   }
 
+
+  function date_selected(item, i) {
+
+    if (item == "-") {
+      return  
+    }
+
+    active_day = item;
+    date = item.toString().padStart(2,"0") + "." + month.toString().padStart(2,"0") + "." + year.toString()
+
+    day_name = day_dict[i]
+    
+    date_changed()
+  }
+
 </script>
 
 <div class="date-container">
@@ -267,23 +286,13 @@
 
       <tr>
 
-        {#each row as item}
+        {#each row as item, i}
           <td>
 
             {#if item == active_day}
-              <button class="date-active-button" on:click={() => {if (item != "-") {
-                active_day = item;
-                date = item.toString().padStart(2,"0") + "." + month.toString().padStart(2,"0") + "." + year.toString()
-                
-                date_changed()
-              }}}>{item}</button>
+              <button class="date-active-button" on:click={() => {date_selected(item, i)}}>{item}</button>
             {:else}
-              <button class="date-button" on:click={() => {if (item != "-") {
-                active_day = item
-                date = item.toString().padStart(2,"0") + "." + month.toString().padStart(2,"0") + "." + year.toString()
-
-                date_changed()
-              }}}>{item}</button>
+              <button class="date-button" on:click={() => {date_selected(item, i)}}>{item}</button>
             {/if}            
 
             

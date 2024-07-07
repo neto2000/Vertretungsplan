@@ -76,7 +76,7 @@
 
 
 
-
+  // executed on date selected
   async function is_day_in_db(date) {
 
 
@@ -256,7 +256,7 @@
     </div>
 
     {#if show_date}
-      <DatePicker bind:date={current_day.date} date_changed={() => is_day_in_db(current_day.date)} />   
+      <DatePicker bind:date={current_day.date} bind:day_name={current_day.week_day} date_changed={() => is_day_in_db(current_day.date)} />   
     {/if}
 
     <div class="info-container">
