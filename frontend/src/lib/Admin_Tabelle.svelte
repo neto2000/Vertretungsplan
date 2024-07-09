@@ -194,7 +194,7 @@
   
   <div class="add-container">
     <button class="add-button" on:click={() => {add_row()}}>Zeile hinzufügen</button>
-    <button class="add-button" on:click={() => {update_row()}}>Update</button>
+    <!-- <button class="add-button" on:click={() => {update_row()}}>Update</button> -->
   </div>
 </div>
 
