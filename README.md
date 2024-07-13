@@ -16,6 +16,13 @@
 
  ## ToDo's
 
+  ### longtime goals
+   - [ ] anzeige Möglichkeit für große Displays (wie Fernsehr in AULA oder so)
+   - [ ] API Zugang
+   - [ ] variable anpassbare Startseite
+   - [ ] Aushänge darstellen
+   - [ ] variable Felder bei Listen
+
   ### UI Design
 
    - [x] simple design for main page
